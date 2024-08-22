@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력한 글자 수 출력</title>
+	<style>
+		#text {
+			border: 0px;
+			outline: 2px solid black;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			// input 태그(=객체)를 자바스크립트로 가져오기
+			let text = document.querySelector('#text');
+			let contents = document.querySelector('#contents');
+			text.addEventListener('keyup', function() {
+				// console.log(1);
+				if(text.value.length < 10){
+					contents.innerHTML = text.value.length + '글자';
+					// document.getElementById('text').style.outline = 'none';
+					// document.getElementById('text').style.borderColor = 'black';
+					document.getElementById('text').style.border = '0px';
+					document.getElementById('text').style.outline = '2px solid black';
+				}
+				else {
+					contents.innerHTML = '10글자 이상입니다.';
+					// document.getElementById('text').style.borderColor = 'red';
+					document.getElementById('text').style.outline = '2px solid red';
+					// text.style.border = '1px solid red';
+					// text.readOnly = true;
+
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+    <input type="text" id="text">
+	<span id="contents"></span>
+</body>
+</html>

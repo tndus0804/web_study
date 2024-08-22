@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 관련 서식</title>
+    
+    <!-- 웹 font를 참조하는 태그 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+    <style>
+        /* 
+            * 텍스트 관련 서식 종류
+            font-size : 텍스트의 크기
+            font-weight : 글자의 두께 100~900, bold(700)
+                , bolder, lighter, bormal(400) ..
+            font-family : 글꼴을 지정
+            font-style : 문자 스타일(normal, italic)
+            color: 글꼴의 색상을 지정
+            text-decoration : 텍스트의 줄 표시 / 제거
+            text-transform : 대소문자 변환
+            text-shadow : 텍스트 그림자 효과
+        */
+        a {
+            color: black;
+            text-decoration: line-through;
+        }
+        h1 {
+            font-size: 70px;
+            font-weight: bolder;
+        }
+        
+        p.copy {
+            /* uppercase, lowercase, none .. */
+            text-transform: capitalize;
+            text-align: center;
+            text-shadow: 1px 1px blue;
+        }
+        #pid {
+            font-family: "Playwrite GB S", cursive;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 서식 관련 속성</h1>
+    <a href="">네이버 바로가기</a>
+    <p>텍스트 아무거나 작성하세요.
+        텍스트 아무거나 작성하세요.
+        텍스트 아무거나 작성하세요.
+    </p>
+    <p class="copy">copyright all Reseved by gj13 2024</p>
+
+    <p id="pid">abcdefg asdfaskdfenlk가나다라마바사아자차카타파하</p>
+</body>
+</html>

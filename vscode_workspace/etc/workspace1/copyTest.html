@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>copy test</title>
+	<style>
+		/* 기본적으로 input의 텍스트가 전체 선택되지 않도록 */
+		input::selection {
+			/* background: transparent; */
+		}
+	</style>
+	<script>
+		let divTag;
+		let inputTag;
+		let copyBtn;
+		window.onload = function (){ 
+			divTag = document.getElementById("divTag");
+			inputTag = document.getElementById("inputTag");
+			copyBtn = document.getElementById("copyBtn");
+
+			copyBtn.addEventListener("click", function(event) {
+				// const selection = document.getSelection();
+				const reversed = Array.from(divTag.toString()).reverse().join("");
+
+				// let copyEvent = new copyEvent
+				event.clipboardData.setData("text/plain", reversed);
+				event.preventDefault();
+			});
+
+// copy 이벤트
+			divTag.addEventListener("copy", function() {
+				//클립보드 복사 이벤트가 발생했을 때 실행할 작업을 여기에 작성
+				console.log("복사됨");
+			});
+
+// paste 이벤트
+			inputTag.addEventListener("paste", function(event){
+				// 붙여넣기 데이터 가져오기
+				// event.clipboardData.getData('text') 이거나
+				// window.clipboardData.getData("text") 를 아래로 표현
+				let paste = (event.clipboardData || window.clipboardData).getData("text");
+				
+				// 붙여넣기 데이터 출력
+				console.log("붙여넣기 => ", paste);
+			});
+			
+// focus 이벤트
+			inputTag.addEventListener("focus", function(event) {
+				// 이벤트가 발생했을 떄 커서를 텍스트의 끝으로 이동
+				let valueLength = inputTag.value.length;
+				inputTag.setSelectionRange(valueLength, valueLength);
+			});
+
+			// 플래그 변수
+// context 이벤트
+			let isContextMenuTriggered = false;
+			inputTag.addEventListener("contextmenu", function(event) {
+				// let paste = event.clipboardData.getData("text");
+				// let paste2 = window.clipboardData.getData("text");
+				if (!isContextMenuTriggered) {
+					isContextMenuTriggered = true;
+
+					// 기본 컨텍스트 메뉴 동작을 방지
+					// event.preventDefault();
+					setTimeout(()=>{
+						let contextmenu = new MouseEvent("contextmenu", {
+							bubbles: true,
+							cancelable: true,
+							view: window,
+							clientX: event.clientX,
+							clientY: event.clientY
+						});
+						inputTag.dispatchEvent(contextmenu);
+						console.log('timeout');
+					}, 0);
+					console.log('eventListener');
+
+					setTimeout(() => {
+						isContextMenuTriggered = false;
+					}, 0);
+					console.log(event.target.value);
+					let pasteEvent = new ClipboardEvent('paste', {
+						// clipboardData: clipboardData,
+						bubbles: true,
+						cancelable: true
+					});
+					inputTag.dispatchEvent(pasteEvent)
+				}
+				
+				
+			})
+		};
+	</script>
+</head>
+<body>
+	<span id="divTag">
+		ㅁㄴㅇㄹ
+	</span><input type="button" id="copyBtn" value="복사"><br> 
+	<input type="text" id="inputTag">
+	<!-- <textarea name="" id="inputTag"></textarea> -->
+</body>
+</html>

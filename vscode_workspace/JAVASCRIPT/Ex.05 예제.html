@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>주민등록번호 예제</title>
+	<script>
+		window.onload = function() {
+			let input = document.getElementById('ssn');
+			let btn = document.getElementById('btn');
+			let div = document.getElementById('result');
+
+			btn.addEventListener('click', function() {
+				let resinum = ssn.value;
+				let resiArr = resinum.split('-');
+				let birthYear = '';
+				let birthMonth = resiArr[0].substring(2,4);
+				let birthDate = resiArr[0].substring(4,6);
+				let age = '';
+				let gender = '';
+				let date = new Date;
+				let curYear = date.getFullYear();
+				let curMonth = date.getMonth()+1;
+				let curDate = date.getDate();
+				let manAge = 0;
+
+				// 년도, 나이 구하기
+
+
+				if(resiArr[0][0] >= 4) {
+					birthYear = '19' + resiArr[0].substring(0, 2);
+				} else {
+					birthYear = '20' + resiArr[0].substring(0, 2);
+				}
+				age = curYear-Number(birthYear) + 1;
+
+				// 성별 구하기
+				if(resiArr[1][0] == '1' || resiArr[1][0] == '3'){
+					gender = '남자';
+				} else if(resiArr[1][0] == '2' || resiArr[1][0] == '4') {
+					gender = '여자';
+				}
+
+				// 만나이 구하기
+				// - (1) 월 비교
+				/* console.log(`현재 ${curYear}/${curMonth}/${curDate}`);
+				if(curMonth == Number(birthMonth)) { // 생일 안지남
+					if(curDate < Number(birthDate)) { // 생일 안지남
+						manAge = age-2;
+					} else {
+						manAge = age-1;
+					}
+				} else if(curMonth < Number(birthMonth)) { // 생일 안지남
+					manAge = age - 2;
+				} else {
+					manAge = age - 1;
+				} */
+				// - (2) 월을 숫자로 바꿔서 비교하기
+				console.log('' + curMonth + curDate, birthMonth+birthDate);
+				if(Number(''+curMonth+curDate) >= Number(birthMonth+birthDate)) {
+					manAge = age - 1;
+				} else { // 생일 안지남
+					manAge = age - 2;
+				}
+
+				div.innerHTML = `${birthYear}년생 ${age}세(만 ${manAge}) ${gender}입니다`;
+			});
+		}
+		
+	</script>
+</head>
+
+<body>
+	<label for="ssn">주민등록번호</label>
+	<input type="text" id="ssn" placeholder="ex. 000000-0000000" value="000804-3212112">
+	<input type="button" id="btn" value="정보 출력">
+	<div id="result"></div>
+</body>
+
+</html>

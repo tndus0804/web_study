@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팝업창 예제</title>
+	<script>
+		window.onload = function() {
+			let btn1 = document.querySelector('#btn1');
+			let btn2 = document.querySelector('#btn2');
+
+			let win
+			let timer
+
+			btn1.addEventListener('click', function() {
+				console.log('d');
+				win = window.open(
+					'./Ex.07%20sub.html'
+					, ""
+					, "top=100, left=100, width=150, height=100"
+				);
+
+				timer = setInterval(function() {
+					
+					win.moveTo(
+						Math.floor(Math.random()*1920)
+						, Math.floor(Math.random() * 1080)
+					);
+
+				}, 300);
+			})
+			btn2.addEventListener('click', function() {
+				 clearInterval(timer);
+				 win.close();
+			})
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="클릭" id="btn1">
+	<input type="button" value="스탑" id="btn2">
+</body>
+</html>

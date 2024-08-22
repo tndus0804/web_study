@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>float: clear</title>
+	<style>
+		.container{
+			border: 5px solid red;
+			width: 600px;
+		}
+		.top {
+			background-color: purple;
+			height: 50px;
+		}
+		.left {
+			background-color: skyblue;
+			width: 400px;
+			height: 100px;
+			float: left;
+		}
+		.right{
+			background-color: orange;
+			width: 200px;
+			height: 100px;
+			float: right;
+		}
+		.clear{
+			background-color: lightgreen;
+			height: 50px;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="top">float:none</div>
+		<div class="left">float:left</div>
+		<div class="right">float:right</div>
+		<div class="clear">float:clear</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개</title>
+    <style>
+        body { padding:0px;margin: 0px;height: 100vh;}
+        div.container{
+            /* border: 1px solid red; */
+            position: relative;
+            height: 100vh;
+			display: flex;
+        }
+		/* 왼쪽 ===================================== */
+        div#left {
+            width: 20%;
+			text-align: center;
+            /* border: 1px solid blue; */
+            /* float: left; */
+			/* display: flex; */
+			/* flex-direction: column; */
+			background-color: lightblue;
+			height: 100%;
+		}
+		#left > img{
+			margin-top: 30px;
+			/* border-radius: 100%; */
+		}
+        /* 오른쪽===================================== */
+        div#right {
+			float: left;
+            position: relative;
+            width: 80%;
+            height: 100%;
+            background-color: rgb(209, 255, 209);
+        }
+		/* menu-bar ===================================== */
+        #right>.menu-bar ul {
+            list-style-type: none;
+            padding:0;
+            /* background-color: green; */
+			display: flex;
+        }
+
+        #right>.menu-bar ul li{
+            /* float: left; */
+            width: 33.3%;
+            text-align: center;
+            background-color: yellow;
+        }
+
+        #right>.menu-bar ul li a{
+            display: inline-block;
+			width: 100%;
+			padding-top: 12px;
+			height: 38px;
+			text-decoration: none;
+			color: black;
+			/* background-color:  rgba(255, 192, 203, 0.7); */
+			&:hover {
+				background-color: gray;
+				color: white
+			}
+        }
+		/* my-information ===================================== */
+		section.my-information{
+			/* background-color: pink; */
+			display: flex;
+			/* border: 3px solid blue; */
+			position: relative;
+			margin-left: 50px;
+        }
+		
+        section.my-information img{
+			/* float: left; */
+            /* text-align: center; */
+            /* position: relative; */
+			height: 200px;
+			margin-right: 50px;
+		}
+
+		/* my-things ===================================== */
+		.my-things {
+			border: 1px solid rgba(0, 0, 255, 0);
+		}
+
+		.my-things p {
+			text-align: center;
+		}
+
+        .my-things > div {
+            /* background-color: green; */
+            /* border: 1px solid red; */
+            display: flex;
+
+        }
+        .my-things > div > div{
+            /* background-color: pink; */
+            margin: 0 auto;
+        }
+        
+        .my-things ol {
+            margin: 0px;
+            padding: 0px;
+        }
+		
+		table {
+			/* border: 1px solid red; */
+			td {
+				/* border : 1px solid blue; */
+				padding-right: 30px;
+			}
+		}
+
+
+    </style>
+</head>
+<body>
+    <div class="container" style="position: relative;">
+		<!-- ===========================왼쪽=========================== -->
+        <div id="left">
+			<!-- 이미지 사진 -->
+            <img src="https://velog.velcdn.com/images/churoo/profile/52f32e2d-7a55-4c9b-b759-93189042d311/image.jpg" 
+							style="width: 90%; height: auto; max-height: 100%; border-radius: 100%;">
+            <p>KIM, SUYEON</p>
+            <p>Developer</p>
+            <hr width="98%">
+			<!-- 전화 아이콘 -->
+			<img src="C:\Users\user\Downloads\icon_call.png" width="60%">
+			<p>010-1234-5678</p>
+			<!-- 이메일 아이콘 -->
+			<img src="C:\Users\user\Downloads\icon_message.png" alt="이메일 아이콘" width="60%" height="auto">
+            <p>playskal@naver.com</p>
+        </div>
+		<!-- ===========================오른쪽========================== -->
+		<div id="right" style="height: 100%;">
+			<section class="menu-bar">
+				<ul>
+					<li><a href="#">HOME</a></li>
+					<li><a href="#">RESUME</a></li>
+					<li><a href="#">PROJECTS</a></li>
+				</ul>
+			</section>
+			<hr>
+			<!-- 정보 -->
+			<section class="my-information">
+				
+					<img src="https://velog.velcdn.com/images/churoo/profile/52f32e2d-7a55-4c9b-b759-93189042d311/image.jpg"
+								 alt="프로필 이미지">
+					<div>
+						<p>Information</p>
+						<table>
+							<tr><td>Name</td><td>김수연</td></tr>
+							<tr><td>Age</td><td>25</td></tr>
+							<tr><td>Phone</td><td>010-1234-5678</td></tr>
+							<tr><td>E-mail</td><td>11@naver.com</td></tr>
+							<tr><td>MBTI</td><td>ISFP</td></tr>
+						</table>
+					</div>
+				
+				</section>
+			<hr>
+			<!-- 좋아하는것~ -->
+			<section class="my-things">
+				<div>
+					<div id="my-favorite">
+						<p>좋아하는 것</p>
+						<ol>
+							<li>고기</li>
+							<li>고기</li>
+							<li>고기</li>
+						</ol>
+					</div>
+					<div id="my-hates">
+						<p>싫어하는 것</p>
+						<ol>
+							<li>풀</li>
+							<li>풀</li>
+							<li>풀</li>
+						</ol>
+					</div>
+					<div id="my-goodthings">
+						<p>잘하는 것</p>
+						<ol>
+							<li>의사소통</li>
+							<li>잠자기</li>
+							<li>노력</li>
+						</ol>
+					</div>
+					<div id="my-cards">
+						<p>보유 자격증</p>
+						<ol>
+							<li>운전면허</li>
+							<li>정처기 필기</li>
+							
+						</ol>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

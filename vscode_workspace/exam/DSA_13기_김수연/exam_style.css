@@ -1,0 +1,54 @@
+/* css 작성 */
+h1 {
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
+
+div#frame {
+    border: 1px solid black;
+    width: 800px;
+    height: 620px;
+    margin: 0 auto;
+}
+
+pre {
+    margin: 0px;
+}
+.expected-score {
+    color: blue;
+}
+main {
+    background-color: LightCyan;
+    padding-left: 20px;
+    padding-top: 1px;
+}
+
+input#check-result {
+    display: block;
+    margin: 0 auto;
+    background-color: aqua;
+    border-radius: 9px;
+}
+
+input.scoreInput {
+    text-align: right;
+    width: 100px;
+}
+
+h4 {
+    color: blue;
+}
+
+footer{
+    /* visibility: hidden; */
+    display: none;
+}
+
+div#resultSpan {
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    margin: 0 auto;
+}

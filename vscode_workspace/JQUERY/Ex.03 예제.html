@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>계산기</title>
+	<style>
+		#result {
+			width: 300px;
+			padding: 10px 5px;
+			margin-right: 0px;
+			font-size: 25px;
+			font-weight: bold;
+			text-align: right;
+			background-color: white;
+			word-break: break-all;
+		}
+		input[type=button] {
+			font-size: 25px;
+			font-weight: bold;
+			width: 100%;
+			height: 50px;
+		}
+		table {
+			background-color: #dddddd;
+			border: 1px solid black;
+			padding: 5px;
+		}
+		td {
+			padding: 3px;
+		}
+	</style>
+	<script src="./jq_folder/jquery-3.7.1.js"></script>
+	<script>
+		let result = 0;
+		let num1 = '';
+		let num2 = '';
+		let isOpSet = false;
+		let isFirst = true;
+		let op;
+		$(document).ready(function() {
+			$('.numbt').on('click', function() {
+				if(!isOpSet) { // 첫번쨰 숫자
+					console.log($(this).val());
+					num1 += $(this).val();
+				} else {
+					num2 += $(this).val();
+				}
+				
+			})
+
+			$('.opbt').on('click', function() {
+				if($(this).val() != '=') {
+					isOpSet = true;
+					op = $(this).val();
+				}else {
+					// 결과
+					if(isFirst) {
+						isFirst = false;
+						num1 = parseInt(num1);
+						num2 = parseInt(num2);
+						console.log(`num1: ${num1}, num2: ${num2}`);
+	
+						switch (op) {
+							case '+':
+								result = num1 + num2;
+								break;
+							case '-':
+								result = num1 - num2;
+								break;
+							case '*':
+								result = num1 * num2;
+								break;
+							case '/':
+								result = num1 / num2;
+								break;
+							default:
+								break;
+						}
+					} else {
+						num1 = result;
+						num2 = parseInt(num2);
+						console.log(`num1: ${num1}, num2: ${num2}`);
+						switch (op) {
+							case '+':
+								result = num1 + num2;
+								break;
+							case '-':
+								result = num1 - num2;
+								break;
+							case '*':
+								result = num1 * num2;
+								break;
+							case '/':
+								result = num1 / num2;
+								break;
+							default:
+								break;
+						}
+					}
+
+					$('#result').text(result);
+					num2 = '';
+				}
+			})
+			
+			$('.clearbt').on('click', function() {
+				$('#result').text('0');
+				num1 = 0;
+				num2 = 0;
+				isOpSet = false;
+				isFirst = true;
+				op = '';
+			})
+
+		})// document
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td colspan="4">
+				<div id="result">0</div>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="7"></td>
+			<td><input type="button" class="numbt" value="8"></td>
+			<td><input type="button" class="numbt" value="9"></td>
+			<td><input type="button" class="opbt"  value="+"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="4"></td>
+			<td><input type="button" class="numbt" value="5"></td>
+			<td><input type="button" class="numbt" value="6"></td>
+			<td><input type="button" class="opbt"  value="-"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="1"></td>
+			<td><input type="button" class="numbt" value="2"></td>
+			<td><input type="button" class="numbt" value="3"></td>
+			<td><input type="button" class="opbt"  value="*"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="0"></td>
+			<td><input type="button" class="clearbt" value="C"></td>
+			<td><input type="button" class="opbt" value="="></td>
+			<td><input type="button" class="opbt"  value="/"></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="./jq_folder/jquery-3.7.1.js"></script>
+	<style>
+		table, td, th {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+	</style>
+    <script>
+		function testArray1() {
+			alert('testArray1 실행')
+			let ar = [10, 20, 30];
+			ar.push(40);
+			console.log(`배열의 첫번째요소: ${ar[0]}
+				\n 배열크기: ${ar.length}
+				\n 배열전체: ${ar}
+				`)
+		}
+
+		function testArray2() {
+			let arr = [10, 20, 30];
+
+			for(let i = 0; i < arr.length; i++) {
+				console.log(`${i}번째: ${arr[i]}`);
+			}
+
+			// each() 함수
+			// $.each(collection, function(index, value) {
+			// 		// 작업내용
+			// });
+			// $(collection).each(function(index, value) {
+			// 		// 작업내용
+			// });
+			// collection: 배열 or 객체
+			// index : 현재 요소의 인덱스(배열) 또는 키(객체)
+			// value : 현재 요소의 값
+			$.each(arr, function(i, num) {
+				console.log(`${i}번째: ${num}`);
+			});
+			$(arr).each(function(i, num) {
+				console.log(`${i}번째: ${num}`);
+			});
+
+		};
+
+		function testEach1() {
+			let score = [20, 50, 20, 90];
+			
+			// score 배열의 모든 요소의 합계를 each()를 사용하여 구하시오.
+			let sum = 0;
+			$.each(score, function(index, value){
+				sum += value;
+			})
+			console.log('합계는' + sum);
+		};
+		
+		function testEach2() {
+			let arObject = [
+				{num: 10, name: 'aaa', title: '제목1'},
+				{num: 20, name: 'bbb', title: '제목2'},
+				{num: 30, name: 'ccc', title: '제목3'}
+			];
+			$.each(arObject, function(index, ob){
+				console.log(`idx: ${index}, 이름: ${ob.name}
+					, 제목: ${ob.title}`);
+			});
+		}
+
+		function testMap() {
+			// map() 함수 사용
+			// $.map(collection, function(value, index){
+			//		// 코드
+			// });
+			// collection : 배열이나 객체
+			// value : 현재 요소의 값
+			// index : 현재 요소의 인덱스(배열) 또는 키(객체);
+
+			let objList = [
+				{area: "서울", name: "무대리"},
+				{area: "부산", name: "홍과장"},
+				{area: "광주", name: "박사장"},
+				{area: "서울", name: "이사원"}
+			];
+
+			let arr = $.map(objList, function(value, idx){
+				if(value.area == '서울') {
+					return value;
+				}
+			});
+			console.log(arr);
+
+			// $.each vs $.map
+			// $.each는 반복작업을 수행하고 원본배열이나 객체를 반환
+			// $.map은 각 요소에 대한 작업을 수행한 결과로 새 배열을 반환
+			// 단순한 반복작업을 수행하려면 each()를
+			// 변환 작업을 통해 새 배열이 필요하다면 map()을 사용
+
+			// map()를 이용해서 div 태그에 데이터를 table 형식으로 출력
+			// html() = innerHTML
+			let str = '';
+			str += '<table>';
+			str += 	'<tr><th>No</th><th>이름</th><th>지역</th></tr>';
+			let arr2 = $.map(objList, function(value, idx){
+				str += `<tr><td>${idx}</td><td>${value.name}</td><td>${value.area}</td></tr>`;
+			})
+			str+='</table>';
+			$('#result').html(str);
+
+		}
+
+
+
+	</script>
+</head>
+<body>
+	<h1>[ 배열과 배열관련 메서드 ]</h1>
+
+	<!-- 간단한 javascript 함수 호출, 짧은 스크립트 실행
+		브라우저의 호환에 따라 실행안될수도 있음
+		보안에 취약하고 가독성 및 유지보수에 비효율
+	-->
+	<p><a href="javascript:testArray1()">배열의 사용1</a></p>
+	<p><a href="javascript:testArray2()">배열의 사용2</a></p>
+	<p><a href="javascript:testEach1()">each() 사용1</a></p>
+	<p><a href="javascript:testEach2()">each() 사용2</a></p>
+	<p><a href="javascript:testMap()">map() 사용</a></p>
+	<div id="result"></div>
+</body>
+</html>

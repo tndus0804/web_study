@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>padding, margin</title>
+    <style>
+        /* 
+            padding : 테두리를 기준으로 안쪽 여백
+            margin : 테두리를 기준으로 바깥쪽 여백
+
+            1. 한 개의 값을 지정하는 경우
+                4개의 동일한 크기 값이 적용
+            2. 두 개의 값을 지정하는 경우
+                위쪽 및 아래쪽, 왼쪽 및 오룬쪽에 적용
+            3. 네 네개의 값을 지정하는 경우
+                위쪽, 오른쪽, 아래쪽, 왼쪽 순서로 적용
+        */
+        .heading {
+            border: 1px solid red;
+            width: 300px;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 20px 30px 40px;
+        }
+    </style>
+</head>
+<body>
+   <h1 class="heading">박스모델</h1>
+   <h1 class="heading">박스모델</h1>
+</body>
+</html>

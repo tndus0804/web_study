@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table.html</title>
+    <style>
+        table, td, th {
+            border:1px solid #000;
+            border-collapse:collapse;
+        }
+        th {
+            background-color:#e8e8e8;
+        }
+    </style>
+
+</head>
+<body>
+    <table>
+        <!-- 표의 제목을 만드는 태그 -->
+        <caption>표의 제목</caption>
+        <!-- <tr> 테이블의 행을 만드는 태그 -->
+        <tr>
+            <th>표의 셀1</th>
+            <th>표의 셀2</th>
+            <th>표의 셀3</th>
+        </tr>
+        <tr>
+            <!-- <td> 테이블의 열을 만드는 태그 -->
+            <td>표의 셀1</td>
+            <td>표의 셀2</td>
+            <td>표의 셀3</td>
+        </tr>
+        <tr>
+            <td>표의 셀1</td>
+            <td>표의 셀2</td>
+            <td>표의 셀3</td>
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <caption>전화번호부</caption>
+        <tr>
+            <th colspan="2">이름</th>
+            <th>나이</th>
+            <th>전화번호</th>
+        </tr>
+        <tr>
+            <td rowspan="2">홍</td>
+            <td rowspan="2">길동</td>
+            <td rowspan="2">30</td>
+            <td>010-1234-5678</td>
+        </tr>
+        <tr>
+            <td>010-2222-3333</td>
+        </tr>
+    </table>
+    <br>
+
+</body>
+</html>

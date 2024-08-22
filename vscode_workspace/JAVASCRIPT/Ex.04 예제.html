@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>데이터 출력 예제</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+
+		td, th {
+			border: 1px solid black;
+			width: 200px;
+			height: 40px;
+			text-align: center;
+		}
+			
+	</style>
+	<script>
+		let members = [
+			{ "name": "홍길동", grade: "일반회원", 가입일: "20/01/03" },
+			{ "name": "손오공", grade: "실버회원", 가입일: "22/05/05" },
+			{ "name": "이순신", grade: "골드회원", 가입일: "19/03/22" }
+		]
+
+		window.onload = function() {
+			let btn1 = document.querySelector('#btn1')
+			let btn2 = document.querySelector('#btn2')
+
+			btn1.addEventListener('click', function() {
+				let list = members;
+
+				let str = '<table>';
+				str += '<tr><th>이름</ht><th>등급</th><th>가입일</th></tr>';
+				for (let i = 0; i < list.length; i++) {
+					str+= '<tr>'
+					str+=	`<td>${list[i]["name"]}</td>`;
+					str+=	`<td>${list[i]["grade"]}</td>`;
+					str+=	`<td>${list[i]["가입일"]}</td>`;
+					str+= '</tr>'
+				}
+				str += '</table>';
+				document.querySelector('#target').style.display = 'block';
+				document.querySelector('#target').innerHTML = str;
+			})
+		}
+
+		/*
+		
+		function showInfo() {
+			let div = document.getElementById('target');
+			let str = '';
+			str += `<table>`;
+			str += `<tr>`;
+			str += `<th>이름</th>`;
+			str += `<th>등급</th>`;
+			str += `<th>가입일</th>`;
+			str += `</tr>`;
+			for (let mem of members) {
+				str += `<tr>`;
+				str += `<td>${mem.name}</td>`;
+				str += `<td>${mem.grade}</td>`;
+				str += `<td>${mem.가입일}</td>`;
+				str += `</tr>`;
+			}
+			str += `</table>`;
+			if (div)
+				div.innerHTML = str;
+		}
+
+		*/
+
+		function showInfo() {
+			console.log('gg');
+			let div = document.getElementById('target');
+			let table = document.createElement('table');
+			let tr = document.createElement('tr');
+			let th = document.createElement('th');
+			let td = document.createElement('td');
+
+
+		}
+
+
+		function hideInfo() {
+			let div = document.getElementById('target');
+			
+			document.querySelector('#target').style.display = 'none';
+			// div.innerHTML = '';
+		}
+	</script>
+</head>
+
+<body>
+	<input type="button" value="정보 보기" id="btn1" onclick="">
+	<input type="button" value="정보 닫기" id="btn2" onclick="hideInfo()">
+	<div id="target"></div>
+</body>
+
+</html>

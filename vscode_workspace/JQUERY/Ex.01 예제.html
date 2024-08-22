@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제1</title>
+	<script src="./jq_folder/jquery-3.7.1.js"></script>
+	<script>
+		let url = 'https://www.naver.com';
+		$(document).ready(function() {
+			$('input[type="button"]').on('click', function(e) {
+				// url = $(this).attr('url');
+				url = $(e.target).attr('url');
+				$('#alink').attr('href', url);
+			});
+
+			// ↓↓↓↓ 필요X ↓↓↓↓
+			// $('a').click(function() {
+			// 	window.location.href = url;  // assign 방식
+			// 	// window.location.replace(url) // replace 방식
+			// 	// 참고 : https://loomio.tistory.com/16
+			// 	console.log(url);
+			// 	// alert(url);
+			// })
+		});
+	</script>
+</head>
+<body>
+	<h1>J-QUERY 예제1</h1>
+	<p>
+		<input type="button" id="btn1" value="네이버" url="https://www.naver.com">
+		<input type="button" id="btn2" value="네이트" url="https://www.nate.com">
+		<input type="button" id="btn3" value="구글"   url="https://www.google.com">
+	</p>
+
+	<a href="" id="alink">이동하기</a>
+
+</body>
+</html>

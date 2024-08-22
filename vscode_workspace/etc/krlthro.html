@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+	<style>
+		
+		.ruby-visible rt{
+			display: ruby-text;
+		}
+		.ruby-hidden rt{
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+		}
+		
+		function noRuby() {
+			let gakuDiv = document.getElementById('gakutika');
+			
+			if(gakuDiv.classList.contains('ruby-visible')) {
+				gakuDiv.classList.remove('ruby-visible');
+				gakuDiv.classList.add('ruby-hidden');
+				this.innertext = 'sd';
+				console.log(this);
+			} else {
+				gakuDiv.classList.remove('ruby-hidden');
+				gakuDiv.classList.add('ruby-visible');
+			}
+		}
+	
+
+
+	</script>
+</head>
+<body>
+	<ruby><rt></rt></ruby>
+	
+
+	<details>
+		<summary>가쿠치카 <button id="noRuby" onclick="noRuby()">가타카나 토글</button></summary>
+		<div id="gakutika" class="ruby-visible">
+			<p>
+				제가 학생 시절에 가장 열심히 했던 일은 아르바이트입니다. 아르바이트를 시작한 이유는 자립심을 키우기 위해서였습니다. 특히 아이스크림 가게에서 아르바이트를 하며 다양한 경험을 쌓을 수 있었습니다.
+			</p>
+			<p>
+				예를 들어, 주말마다 고객들이 몰려드는 시간대에는 긴 줄을 신속하게 처리하기 위해 팀원들과 협력하여 업무를 나누었습니다. 저는 주로 계산대에서 일했는데, 손님들의 주문을 빠르고 정확하게 처리하기 위해 집중력을 발휘했습니다. 한번은 주문이 한꺼번에 밀려와 실수로 거스름돈을 잘못 준 적이 있었는데, 곧바로 사과하고 문제를 해결하며 신뢰를 회복할 수 있었습니다. 이 경험을 통해 고객 서비스의 중요성을 깊이 깨달았습니다.
+			</p>
+			<p>
+				또한, 가게의 청결 상태를 유지하는 일도 중요한 책임 중 하나였습니다. 마감 시간에 맞춰 바닥을 청소하고, 다음 날 사용할 재료들을 미리 준비하며, 재고를 정리하는 등 꼼꼼하게 일하는 습관을 기를 수 있었습니다.
+			</p>
+			<p>
+				(이러한 경험들은 시간 관리와 책임감을 기르는 데 큰 도움이 되었습니다. 예를 들어, 한 달에 한 번씩 직원들이 함께 참여하는 월간 정산 작업에서는 제가 맡은 부분을 정확히 완료하여 팀 전체의 업무 효율성을 높이는 데 기여했습니다.)
+			</p>
+			<p>
+				이처럼 (아이스크림 가게에서의) 아르바이트 경험은 저에게 중요한 기술들을 배우게 해주었고, 이러한 기술들은 향후 직무에서도 큰 도움이 될 것이라고 확신합니다.
+			</p>
+
+			<p>
+				私が学生時代に、一番力を入れて取り<ruby>組<rt>く</rt></ruby>んだことはアルバイトです。
+				アルバイトを始めた理由は、<ruby>自立心<rt>じりつしん</rt></ruby>を<ruby>育<rt>そだ</rt></ruby>てるためでした。
+				<ruby>特<rt>とく</rt></ruby>にアイスクリーム店でのアルバイトを通じて、さまざまな<ruby>経験<rt>けいけん</rt></ruby>を<ruby>積<rt>つ</rt></ruby>むことができました。
+			</p>
+
+			<p>
+				例えば、週末の<ruby>混雑<rt>こんざつ</rt></ruby>する<ruby>時間帯<rt>じかんたい</rt></ruby>には、長い<ruby>列<rt>れつ</rt></ruby>を<ruby>迅速<rt>じんそく</rt></ruby>に<ruby>処理<rt>しょり</rt></ruby>するためにアルバイト<ruby>仲間<rt>なかま</rt></ruby>と<ruby>協力<rt>きょうりょく</rt></ruby>して<ruby>業務<rt>ぎょうむ</rt></ruby>を<ruby>分担<rt>ぶんたん</rt></ruby>しました。私は<ruby>主<rt>おも</rt></ruby>にレジを担当しており、お客様の注文を<ruby>迅速<rt>じんそく</rt></ruby>かつ<ruby>正確<rt>せいかく</rt></ruby>に処理するために集中力を<ruby>発揮<rt>はっき</rt></ruby>しました。
+				一度、注文が一度に<ruby>重<rt>かさ</rt></ruby>なり、お<ruby>釣<rt>つ</rt></ruby>りを間違えて<ruby>渡<rt>わた</rt></ruby>してしまったことがありましたが、すぐに<ruby>謝罪<rt>しゃざい</rt></ruby>して問題を解決し、<ruby>信頼<rt>しんらい</rt></ruby>を<ruby>回復<rt>かいふく</rt></ruby>することができました。この経験を通じて、カスタマーサービスの<ruby>重要性<rt>じゅうようせい</rt></ruby>を深く理解しました。
+			</p>
+
+			<p>
+				また、<ruby>店舗<rt>てんぽ</rt></ruby>の<ruby>清潔<rt>せいけつ</rt></ruby>を<ruby>保<rt>たも</rt></ruby>つことも重要な<ruby>責任<rt>せきにん</rt></ruby>の一つでした。<ruby>閉店<rt>へいてん</rt></ruby>時間に合わせて<ruby>床<rt>ゆか</rt></ruby>を掃除し、<ruby>翌日<rt>よくじつ</rt></ruby><ruby>使用<rt>しよう</rt></ruby>する<ruby>材料<rt>ざいりょう</rt></ruby>を準備し、<ruby>在庫<rt>ざいこ</rt></ruby>を<ruby>整理<rt>せいり</rt></ruby>するなど、<ruby>細<rt>こま</rt></ruby>かい作業を<ruby>丁寧<rt>ていねい</rt></ruby>に行う習慣を身につけることができました。
+
+			</p>
+			<p>
+			(これらの経験は、時間管理と責任感を<ruby>養<rt>やしな</rt></ruby>うのに大いに<ruby>役立<rt>やくだ</rt></ruby>ちました。例えば、<ruby>月<rt>つき</rt></ruby>に一度<ruby>行<rt>おこな</rt></ruby>われるスタッフ<ruby>全員<rt>ぜんいん</rt></ruby>での<ruby>月次<rt>げつじ</rt></ruby><ruby>精算<rt>せいさん</rt></ruby><ruby>作業<rt>さぎょう</rt></ruby>では、自分が<ruby>担当<rt>たんとう</rt></ruby>した<ruby>部分<rt>ぶぶん</rt></ruby>を<ruby>正確<rt>せいかく</rt></ruby>に<ruby>完了<rt>かんりょう</rt></ruby>させ、チーム<ruby>全体<rt>ぜんたい</rt></ruby>の<ruby>業務<rt>ぎょうむ</rt></ruby><ruby>効率<rt>こうりつ</rt></ruby>を<ruby>向上<rt>こうじょう</rt></ruby>させることに<ruby>貢献<rt>こうけん</rt></ruby>しました。)
+			</p>
+
+			<p>
+				このように、(アイスクリーム店での)アルバイトの<ruby>経験<rt>けいけん</rt></ruby>は、私にとって<ruby>重要<rt>じゅうよう</rt></ruby>なスキルを学ぶ<ruby>機会<rt>きかい</rt></ruby>となり、これらのスキルは<ruby>将来<rt>しょうらい</rt></ruby>の<ruby>職務<rt>しょくむ</rt></ruby>においても,大いに<ruby>役立<rt>やくだ</rt></ruby>つと<ruby>確信<rt>かくしん</rt></ruby>しております。
+			</p>
+
+			＊<ruby>貢献<rt>こうけん</rt></ruby>　기여
+			＊<ruby>細<rt>こま</rt></ruby>かい
+			＊<ruby>配慮<rt>はいりょ</rt></ruby> 배려
+		</div>
+	</details>
+
+	
+</body>
+</html>

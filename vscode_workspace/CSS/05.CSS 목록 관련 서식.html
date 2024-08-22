@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 관련 서식</title>
+    <style>
+        .menu {
+            list-style : none;
+        }
+        /*
+            :: before
+            :: after
+            * 가상 요소(pseudo-element)
+             - 가상 요소는 실제 DOM 구조에 영향을 주지 않고,
+               스타일링과 레이아웃을 조작할 수 있는 강력한 도구
+             - 텍스트, 이미지, 속성을 삽입할 수 있음
+        */
+        .menu li::before {
+            content: '👍 ';
+        }
+        .menu li::after {
+            content: ' :after';
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li>menu-1</li>
+        <li>menu-2</li>
+        <li>menu-3</li>
+        <li>menu-4</li>
+        <li>menu-5</li>
+        
+    </ul>
+</body>
+</html>

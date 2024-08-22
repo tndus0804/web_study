@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<script src="./jq_folder/jquery-3.7.1.js"></script>
+	<script>
+		let filename = [
+			"../HTML/1.image/file/home.png",
+			"../HTML/1.image/file/list.png",
+			"../HTML/1.image/file/exit.png"
+		];
+		let index = 0;
+
+		// 이미지 변경 코드 작성(제이쿼리로)
+		$(document).ready(function() {
+			let timer1 = 1000;
+			let interval;
+			
+			function startInterval() {
+				interval = setInterval( function() {
+					index++;
+					if(index >= filename.length)
+						index = 0;
+					$('#img').attr('src', filename[index]);
+				}, timer1);
+			}
+			
+			startInterval();
+			
+			// $('#img').on('click', function() {
+			// 	index++;
+			// 	if(index >= filename.length)
+			// 		index = 0;
+			// 		$(this).attr('src', filename[index]);
+			// 		$(this).css('opacity', '0').stop()
+			// 		.attr('src', filename[index]).animate({opacity: 1}, 1000);
+			// })
+
+			$('#rangeValue').text($('#myRange').val())
+			// $('#myRange').change(function() {
+			// 	console.log($('#myRange').val());
+			// })
+
+			$('#myRange').on('input', function() {
+				// console.log($('#myRange').val());
+				$('#rangeValue').text($('#myRange').val())
+				timer1 = $('#myRange').val();
+
+				clearInterval(interval); // 기존 타이머 중지
+				startInterval(); // 새 타이머 시작
+			})
+	
+		})
+	</script>
+</head>
+<body>
+	<h1>이미지 변경</h1>
+	<input type="range" min="100" max="1000" step="100" value="500" class="slider" id="myRange"><span id="rangeValue"></span><br>
+	<img src="../HTML/1.image/file/home.png" id="img">
+</body>
+</html>

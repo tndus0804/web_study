@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>계산기</title>
+	<style>
+		#result {
+			width: 300px;
+			padding: 10px 5px;
+			margin-right: 0px;
+			font-size: 25px;
+			font-weight: bold;
+			text-align: right;
+			background-color: white;
+			word-break: break-all;
+		}
+		input[type=button] {
+			font-size: 25px;
+			font-weight: bold;
+			width: 100%;
+			height: 50px;
+		}
+		table {
+			background-color: #dddddd;
+			border: 1px solid black;
+			padding: 5px;
+		}
+		td {
+			padding: 3px;
+		}
+	</style>
+	<script src="./jq_folder/jquery-3.7.1.js"></script>
+	<script>
+		let result = 0;
+		let num1 = '';
+		let num2 = '';
+		let isOpSet = false;
+		let op = '';
+		let isFirst = true;
+		let isOk = false;
+
+		$(document).ready(function() {
+			$('.numbt').on('click', function() {
+				if(!isOpSet) {
+					console.log($(this).val());
+					num1 += $(this).val();
+				} else { // 연산자 정해졌을 때
+					console.log($(this).val());
+					num2 += $(this).val(); // num2 = num2 + $(this).val();
+					console.log(`else num1: ${num1}, num2: ${num2}`);
+					isOk = true;
+					
+				}
+
+			})
+			
+			$('.opbt').on('click', function() {
+				if($(this).val() != '=') { // 연산기호
+					console.log(`num1: ${num1}, num2: ${num2}`);
+					isOpSet = true;
+					op = $(this).val();
+					console.log(op);
+
+					if(isOk) {
+						result = cal(op);
+						console.log(result);
+						num1 = result;
+						num2 = '';
+						isOk = false;
+
+					}
+					
+					
+				} else { // = 버튼 클릭 시
+					console.log('=버튼 누름');
+					if(num2 == '0'){
+						$('#result').text('0으로 나눌 수 없습니다.');
+						return;
+					}
+					if(!isOk) {
+						$('#result').text('숫자를 입력해주세요.');
+						setTimeout(function() {
+							console.log('trigger 실행');
+							$('.clearbt').trigger('click');
+						}, 1000);
+						return
+					}
+					result = cal(op);
+					$('#result').text(result);
+					console.log('result', result);
+					num1 = result;
+					num2 = '';
+					isOk = false;
+					
+				}
+			})
+
+			$('.clearbt').on('click', function() {
+				$('#result').text('0');
+				isOpSet = false;
+				num1 = '';
+				num2 = '';
+				op = '';
+				result = 0;
+				isOk = false;
+			})
+			
+
+		})// document
+
+		function cal(oper) {
+			num1 = parseInt(num1);
+			num2 = parseInt(num2);
+			switch (oper) {
+				case '+':
+					result = num1 + num2;
+					break;
+				case '-':
+					result = num1 - num2;
+					break;
+				case '*':
+					result = num1 * num2;
+					break;
+				case '/':
+					result = num1 / num2;
+					break;
+				default:
+					break;
+			}
+			return result;
+		}
+	</script>
+</head>
+<body>
+	1 + 2 = 3 <br>
+	1 + 2 + 3 = 6
+	<table>
+		<tr>
+			<td colspan="4">
+				<div id="result">0</div>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="7"></td>
+			<td><input type="button" class="numbt" value="8"></td>
+			<td><input type="button" class="numbt" value="9"></td>
+			<td><input type="button" class="opbt"  value="+"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="4"></td>
+			<td><input type="button" class="numbt" value="5"></td>
+			<td><input type="button" class="numbt" value="6"></td>
+			<td><input type="button" class="opbt"  value="-"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="1"></td>
+			<td><input type="button" class="numbt" value="2"></td>
+			<td><input type="button" class="numbt" value="3"></td>
+			<td><input type="button" class="opbt"  value="*"></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="numbt" value="0"></td>
+			<td><input type="button" class="clearbt" value="C"></td>
+			<td><input type="button" class="opbt" value="="></td>
+			<td><input type="button" class="opbt"  value="/"></td>
+		</tr>
+	</table>
+</body>
+</html>

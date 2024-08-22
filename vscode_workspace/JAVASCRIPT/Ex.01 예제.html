@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수예쩨 - 배경색 바꾸기</title>
+	<style>
+		body {
+			text-align: center;
+		}
+	</style>
+	<script>
+		
+		window.onload = function() {
+			let btn = document.getElementsByTagName('button');
+			let index = 0;
+			if(btn.length > 0) {
+				btn[0].addEventListener('click', function() {
+					// (1) 정해진 색깔 차례대로
+					let colors = ['#FF00FF','#E6E6FA','LightCyan','lightpink', 'burlywood'];
+					
+					// (1-1)
+					document.body.style.backgroundColor = colors[index];
+					index++;
+					if(index == colors.length) index=0;
+					// console.log('현재', index);
+
+					// (1-2)
+					// document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+					// (2) 랜덤색깔
+					//document.body.style.backgroundColor = getRandomHexColor();
+				})
+			}
+
+		}
+
+		function getRandomHexColor() {
+			// 랜덤한 RGB 값을 생성
+			const r = Math.floor(Math.random() * 256); // 0부터 255 사이의 랜덤한 값
+			const g = Math.floor(Math.random() * 256);
+			const b = Math.floor(Math.random() * 256);
+
+			// RGB 값을 16진수로 변환하여 문자열로 조합
+			const rHex = r.toString(16).padStart(2, '0'); // toString(16)을 통해 16진수로 변환, padStart를 이용해 2자리로 만듦
+			const gHex = g.toString(16).padStart(2, '0');
+			const bHex = b.toString(16).padStart(2, '0');
+			
+			// 16진수로 변환된 RGB 값을 조합하여 CSS 색상 코드로 반환
+			const hexColor = `#${rHex}${gHex}${bHex}`;
+
+			return hexColor;
+		}
+	</script>
+</head>
+<body>
+	<button>배경색 바꾸기</button>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<script src="./jq_folder/jquery-3.7.1.js"></script>
+	<style>
+		input {
+			width: 250px;
+			height: 18px;
+		}
+		p.typing-txt {
+			display: none;
+		}
+		.typing {
+			display: inline-block;
+			/* cursor 애니메이션 적용 */
+			animation-name: cursor;
+			/* 커서가 깜빡이는 주기 */
+			animation-duration: 0.3s;
+			/* 애니메이션이 무한히 반복되도록 설정 */
+			animation-iteration-count: infinite;
+		}
+		/* 오른쪽 테두리를 세 단계로 나눠 커서처럼 깜빡이는 효과 */
+		/* 
+			keyframes 규칙을 사용하면 에니메이션 중간 단계를 지정할 수 있으며,
+			애니메이션이 사긴에 따라 어떻게 변화해야 하는지 명확하게 정의 가능.
+		*/
+		@keyframes cursor {
+			0%   { border-right: 1px solid #fff; }
+			50%  { border-right: 1px solid #000; }
+			100% { border-right: 1px solid #fff; }
+		}
+	</style>
+	<script>
+		let typingIdx = 0;
+		let typingTxt = "";
+		let tyInt;
+		$(document).ready(function() {
+
+			$('#btn').click(function() {
+				// 타이핑될 문자열 가져오기
+				typingTxt = $('.typing-txt').val();
+				// 한글자씩 자르기
+				typingTxt = typingTxt.split('');
+				
+				// 현재 타이핑 내용을 초기화
+				clearInterval(tyInt);
+				typingIdx = 0;
+				$('.typing').empty();
+				
+				// 타이핑 효과를 시작
+				tyInt = setInterval(typing, 100);
+			});
+		});
+	
+		function typing() {
+			if(typingIdx < typingTxt.length) {
+				$('.typing').append(typingTxt[typingIdx]);
+				typingIdx++;
+			} else {
+				clearInterval(tyInt);
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+	<h1>J-Query 예제2</h1>
+	<input class="typing-txt" placeholder="입력하세요...">
+	<button id="btn">출력</button>
+	<hr>
+	<p class="typing"></p>
+</body>
+</html>

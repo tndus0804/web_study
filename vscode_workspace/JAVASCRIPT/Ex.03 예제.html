@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 변경</title>
+	<script>
+		let imgss = {
+			img1: "https://png.pngtree.com/background/20230530/original/pngtree-dream-animation-wallpapers-picture-image_2792288.jpg"
+			, img2: "https://i.pinimg.com/736x/e5/07/69/e50769e32bc87c6641f09b0c44b74ae1.jpg"
+			, img3: "https://i.pinimg.com/736x/08/9d/1c/089d1cf164a2e9664498641fd5fdd1b7.jpg"
+		}
+
+		let imgs = [
+			"https://png.pngtree.com/background/20230530/original/pngtree-dream-animation-wallpapers-picture-image_2792288.jpg"
+			,"https://i.pinimg.com/736x/e5/07/69/e50769e32bc87c6641f09b0c44b74ae1.jpg"
+			,"https://i.pinimg.com/736x/08/9d/1c/089d1cf164a2e9664498641fd5fdd1b7.jpg"
+		]
+			
+		function changeImg(event) {
+			let selectTag = document.getElementById('selectTag');
+			let imgTag = document.getElementById('imgTag');
+			
+			// console.log(selectTag.selectedIndex);
+			// console.log(selectTag[selectTag.selectedIndex].value);
+			// imgTag.src = imgs['img3'];
+			// imgTag.src = imgs[selectTag.selectedIndex];
+			console.log(selectTag.length);
+			console.log('이벤트', event);
+			// console.log(this);
+			for (let i = 0; i < selectTag.length; i++) {
+				console.log(selectTag.options[i].selected);
+				if(selectTag.options[i].selected == true) {
+					// console.log(1);
+					// console.log('주소이미지', e.target.options[i]);
+					imgTag.src = selectTag.options[i].value;
+				}
+			}
+		}
+
+		window.onload = function() {
+			let selectTag = document.getElementById('selectTag');
+			let imgTag = document.getElementById('imgTag');
+		}
+
+
+
+
+	</script>
+</head>
+<body>
+	<select onchange="changeImg()" id="selectTag">
+		<optgroup>
+
+		</optgroup>
+		<option value="https://png.pngtree.com/background/20230530/original/pngtree-dream-animation-wallpapers-picture-image_2792288.jpg" selected>그림1</option>
+		<option value="https://i.pinimg.com/736x/e5/07/69/e50769e32bc87c6641f09b0c44b74ae1.jpg">그림2</option>
+		<option value="https://i.pinimg.com/736x/08/9d/1c/089d1cf164a2e9664498641fd5fdd1b7.jpg">그림3</option>
+	</select>
+	<br>
+	<img width="400px" id="imgTag" src="https://i.pinimg.com/736x/08/9d/1c/089d1cf164a2e9664498641fd5fdd1b7.jpg" alt="">
+</body>
+</html>

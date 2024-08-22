@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 선택자</title>
+    <script src="./jq_folder/jquery-3.7.1.slim.min.js"></script>
+	<style>
+		table, th, td {
+			border: 1px dotted black;
+			border-collapse: collapse;
+		}
+
+		th {
+			width: 100px;
+			height: 30px;
+			background-color: cadetblue;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			$('h2').css('color', 'blue');
+			$('#text1').css('color', 'red');
+			$('.text2').css('color', 'pink');
+			$('p.text2').css('background-color', 'black')
+				.css('border', '1px solid pink');
+			$('p:first').css('color', 'green');
+
+			$('input[type="text"]').css('background-color', 'pink');
+			$('#select1').css('background-color', 'rgb(5, 99, 124)');
+			$('#select1 option').css('background-color', 'beige');
+
+			// odd 홀수, even 짝수
+			$('tr:odd').css('background-color', 'beige');
+			$('tr:even').css('background-color', 'lightblue');
+		});
+	
+	 </script>
+</head>
+<body>
+	<h2>[ jQuery 선택자 ]</h2>
+	<p>p 태그</p>
+	<p id="text1">id 있는 p 태그</p>
+	<p class="text2">class 있는 p 태그</p>
+	<p>p 태그</p>
+
+	<input type="text"><br>
+	<input type="checkbox"><br>
+	<select name="select1" id="select1">
+		<option value="">aaa</option>
+		<option value="" selected>bbb</option>
+		<option value="">ccc</option>
+	</select>
+
+
+	<table>
+		<tr>
+			<th>이름</th>
+			<th>나이</th>
+			<th>주소</th>
+		</tr>
+		<tr>  <td>홍길동</td><td>20</td><td>부산</td>  </tr>
+		<tr>  <td>이순신</td><td>30</td><td>서울</td>  </tr>
+		<tr>  <td>강감찬</td><td>40</td><td>광주</td>  </tr>
+		<tr>  <td>각재우</td><td>50</td><td>대구</td>  </tr>
+		<tr>  <td>홍경래</td><td>60</td><td>수원</td>  </tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>사칙연산 계산기</title>
+	<style>
+		input[type="text"] {
+			width: 80px;
+		}
+	</style>
+	<script>
+		let num1 = document.getElementById('num1');
+		let num2 = document.getElementById('num2');
+		let operator = document.getElementById('operator');
+
+		window.onload = function() {
+
+			// btn.addEventListener('click', function() {
+			// });
+		}
+		
+		// 나의 코드
+		function submitFunc(event) {
+			let operator = document.getElementById('operator');
+			let num1 = document.getElementById('num1');
+			let num2 = document.getElementById('num2');
+			let num3 = document.getElementById('num3');
+			let result = 0;
+			num3.value = '';
+
+			// 숫자
+			num1 = num1.value.trim()
+			num2 = num2.value.trim()
+			if( isNaN(num1.value)||isNaN(num2.value)||num1.value==''||num2.value=='' ){
+				alert('숫자를 입력해주세요');
+				num1.focus();
+				return;
+			}
+
+			if(num2.value == '0') {
+				alert('0으로 나눌 수 없습니다.');
+				num2.focus();
+				return;
+			}
+
+			if(operator){
+				console.log(operator);
+				console.log(operator.value);
+
+				switch(operator.value) {
+					case 'plus':
+						result = Number(num1.value) + Number(num2.value);
+						break;
+					case 'minus':
+						result = Number(num1.value) - Number(num2.value);
+						break;
+					case 'multi':
+						result = Number(num1.value) * Number(num2.value);
+						break;
+					case 'divide':
+						result = Number(num1.value) / Number(num2.value);
+						break;
+				}
+
+				num3.value = result;
+
+			}
+
+
+			
+		}
+		
+		// 강사님 코드
+		function cal(){ 
+			let operator = document.getElementById('operator');
+			let num1 = document.getElementById('num1');
+			let num2 = document.getElementById('num2');
+			let num3 = document.getElementById('num3');
+			let result = 0;
+			
+			if(num1.value.trim().length == 0
+				|| isNaN(num1.value)) {
+				alert('숫자를 입력해주세요')
+				num1.focus();
+				num1.select();
+				return;
+			}
+			if(num2.value.trim().length == 0
+				|| isNaN(num2.value)) {
+				alert('숫자를 입력해주세요')
+				num2.focus();
+				num2.select();
+				return;
+			}
+
+			switch(operator.value) {
+				case 'plus':
+					result = parseInt(num1.value) + parseInt(num2.value);
+					break;
+				case 'minus':
+					result = parseInt(num1.value) - parseInt(num2.value);
+					break;
+				case 'multi':
+					result = parseInt(num1.value) * parseInt(num2.value);
+					break;
+				case 'divide':
+					if(num2.value == 0) {
+						alert('0으로 나눌 수 없습니다.');
+						return;
+					}
+					result = parseInt(num1.value) / parseInt(num2.value);
+					break;
+				default:
+					alert('연산자 오류입니다.');
+					break;
+			}
+			num3.value = result;
+		}
+		</script>
+</head>
+
+<!-- 0으로 나누기 불가 -->
+<body>
+	<h1>* 사칙연산 계산기</h1>
+
+	<form action="" onsubmit="" method="get">
+		<input type="text" id="num1">
+		<select id="operator">
+			<option value="plus" selected>+</option>
+			<option value="minus">-</option>
+			<option value="multi">*</option>
+			<option value="divide">/</option>
+		</select>
+		<input type="text" id="num2"> =
+		<input type="text" id="num3" readonly>
+		<input type="button" value="계산" onclick="submitFunc(event)">
+		<input type="reset" value="리셋">
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+    <script>
+        /*
+            Function
+			1. 함수의 문법
+			 - 명명규칙: 영문자, _, $ 사용가능, 숫자와 특수문자는 사용불가
+			 - 명명관례: 동사로 시작, 두 개 이상의 단어는 카멜케이스
+			 - function 함수이름(arg1, arg2, arg3 ...) {
+				// code
+			 }
+			2. 리턴
+			 - return 을 만나면 함수의 실행을 중지하고 호출한 곳으로 리턴값을 반환
+			 - return을 작성하지 않으면 undefined를 반환
+        */
+
+		// 함수 정의부
+		function addFunction(a, b) {
+			return a + b;
+		}
+
+		// 함수 호출부
+		let result = addFunction(1, 4);
+		console.log(result);
+
+		// 함수 호이스팅
+		// 함수 선언이 해당 코드가 실제로 실행되기 전에 끌어올려지는 현상
+		// 호이스팅은 선언만을 대상으로 하며, 할당은 런타임에 실행
+
+		// var의 호이스팅
+		console.log(a); // undefined
+		var a = 10;
+		console.log(a);
+
+		// console.log(b); // ReferenceError
+		let b = 20;
+		console.log(b);
+
+		console.log('----- var scope -----');
+		if (true) {
+			console.log(x);
+			var x = 5;
+			console.log(x);
+		}
+		console.log(x);
+		
+		console.log('----- let scope -----');
+		if (true) {
+			// console.log(y); // 참조에러
+			let y = 10;
+			console.log("in",y);
+		}
+		// console.log(y); // 참조 에러
+
+		function varScope() {
+			var z = 100;
+			console.log('함수 안', z);
+		}
+		varScope();
+		// console.log('함수 밖', z);
+
+		// 1. 함수 선언
+		// 함수 선언은 function 키워드로 시작하며
+		// , 이름이 명시된 함수를 정의
+		myFunc();	// 함수 호이스팅
+		function myFunc() {
+			document.write('함수선언<br>');
+			document.write('함수정의문보다 호출문이 먼저나와도'
+				+ '함수를 호출');
+		}
+
+		// 2. 함수 표현식
+		// myFunc2(); // 참조에러
+		let myFunc2 = function() {
+			document.write('함수 표현식<br>');
+			document.write('함수의 할당이  호이스팅되지 않아 호출 불가');
+		}
+
+		// 내장 함수
+		console.log(typeof parseInt('1000'));
+		console.log(typeof parseFloat('3.14'));
+		console.log(typeof String(2000));
+
+		// 숫자인지를 판별해주는 함수
+		console.log(isNaN('5-3')); // 숫자가 아니면 true
+		console.log(isNaN('5-3xx'));
+		console.log(isNaN('53'));
+
+
+		</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>01. JS 기본문법</title>
+	<script>
+		// 변수
+		/*
+			var, let, const(상수) : 
+				데이터 타입에 상관없이 데이터를 저장할 때 변수 앞에 명시
+		*/
+		var a;
+		a = 10;
+		let b = 'HELLO';
+		const c = 3.14;
+		const d = true;
+
+		console.log(a);
+		console.log(b);
+		console.log(c);
+		console.log(d);
+
+		// clg + enter : console.log() 자동완성;
+		console.log('---------');
+
+		/*
+			* 데이터 타입
+			1. Number
+			2. String
+			3. Undefined
+			4. Null
+			5. Boolean
+			6. Oject
+		*/ 
+
+		let point = 123;
+		console.log(point);
+		console.log(typeof point);     // 해당 값의 데이터타입을 알려줌
+		point = -123;
+		console.log(typeof point);
+
+		console.log('-------------');
+		// NaN : Not a Number
+		point = 1 * 'A';
+		console.log(point);            // NaN
+		console.log(typeof point);     // NaN도 Number로 간주
+
+		console.log('--------------');
+		let str = '안녕하세요11';
+		let str2 = "안녕하세요22" + str;
+		let str3 = `안녕하세요33 ${str}`;  // '${}' 백틱을 통해 문자열을 이어붙이지 않아도 출력 가능
+		console.log(str);
+		console.log(str2);
+		console.log(str3);
+		console.log(typeof str);
+		console.log(typeof str2);
+		console.log(typeof str3);
+
+		console.log('--------------');
+		/*
+			undefined : 
+				변수가 선언되었지만 아직 값이 할당되지 않았을 때의 기본값.
+				함수에서 명시적으로 값을 반환하지 않을 때도 undefined 값을 반환.
+				객체의 속성에 접근할 때 해당 속성이 존재하지 않을 때도 undefined 반환(ex.obj.id)
+		*/ 
+		let e;
+		console.log(e);    // undefined
+
+		console.log('--------------');
+		/* 
+			null : 
+				'값이 없는 상태' or '참조할 값이 없는 상태'
+				변수나 객체 속성이 빈 값임을 명시적으로 나타낼 때 사용
+		*/
+		let f = null;
+		console.log(f);
+
+		console.log('--------');
+		// undefined vs null
+		// == 연산자(동등비교) : 두 값이 같은지를 비교
+		// === 연산자(타입비교) : 두 값과 데이터 타입이 모두 같은지를 비교
+		console.log(null == undefined);     // true
+		console.log(null === undefined);    // false
+		console.log(typeof undefined);      // undefined
+		console.log(typeof null);           // object
+
+		// Boolean : true, false
+		
+		console.log('------------');
+		// Object : { key : value } 형태
+		let book = {
+			title : "책",
+			point : 123
+		};
+		console.log(book);
+		console.log(typeof book);
+		console.log(book.title);
+		console.log(typeof book.title);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>02. 연산자</title>
+	<script>
+		/*
+			1. 산술연산자
+			+, -, *, /, **(제곱), %, ++, --
+			2. 대입연산자, 복합관계연산자
+			=, +=, -=, *=, /=, %=
+			3. 비교연산자
+			>, >=, <, <=, ==, !=, ===, !==
+			4. 논리연산자
+			&&, ||, !
+			5. 타입연산자
+			typeof, instanceof
+			6. 비트연산자
+			&, |, ~, ^, <<, >>, >>>
+		*/
+
+		// 문자열 연산
+		let text1 = '홍';
+		let text2 = '길동';
+		let text3 = text1 + ' ' + text2;
+		console.log(text3);
+
+		let a = 10, b = 20;
+		let str = a + "와 " + b + "의 합계: " + (a+b);
+		console.log(str);
+		
+		
+		// Template 문자열
+		// 변수, 함수 호출 및 객체 프로퍼티 접근
+		let templete = `${a}와 ${b}의 합계는 = ${a+b}`;
+		console.log(templete);
+
+		console.log('---------------');
+		// 비교연산
+		let num1 = 50;
+		let num2 = '50';
+		let num3 = 30;
+		let num4 = '30';
+		console.log(num1 == num2);  // true
+		console.log(num1 === num2); // false
+		console.log(num3 !== num4); // true
+
+		// 논리연산
+		console.log(num1 < num3 || num1 > num3);
+		
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

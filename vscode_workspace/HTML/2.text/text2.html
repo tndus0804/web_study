@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test2.html</title>
+</head>
+<body>
+    <!-- 
+        목록을 만드는 태그 ul, ol, dl
+        <ol> : 순서가 있는 목록(ordered list)
+        <ul> : 순서가 없는 목록(unordered list)
+            <li> : 목록 요소(list item)
+        <dl> : 용어를 설명하는 목록(description list)
+            <dt> : 정의되는 용어의 제목(decription term)
+            <dd> : 용어에 대한 설명(description definition)
+    -->
+
+    <h1>Front-end 학습 로드맵</h1>
+    <ol>
+        <li>HTML/CSS</li>
+        <li>javascript</li>
+        <ul style = "list-style-type:disc;">
+            <li>데이터 타입</li>
+            <li>내장 함수</li>
+            <li>DOM 객체</li>
+        </ul>
+        <li>JQuery</li>
+    </ol>
+    
+    <h1>쇼핑 목록</h1>
+    <!-- <ul> : 순서가 없는 목록 태그 -->
+    <!-- square, disc, circle -->
+    <ul style = "list-style-type: square;">
+        <li>맥북</li>
+        <li>아이폰</li>
+        <li>아이패드</li>
+    </ul>
+    
+    <ol type="I"> 1일차
+        <li>해녀 박물관</li>
+        <li>낚시 체험</li>
+        <li>카약 체험</li>
+    </ol>
+    <ol type="a" start="3"> 2일차
+        <li>용눈이오름</li>
+        <li>만장굴</li>
+        <li>카약 체험</li>
+    </ol>
+
+    <!-- 
+        설명목록
+        1. <dl> 태그
+            정의 목록을 나타내는 태그
+            특정 용어에 대해 정의하는 제목과
+            제목에 대한 설명
+        2. <dt> 태그
+            정의되는 용어에 대한 제목
+        3. <dd> 태그
+            정의된 제목에 대한 설명
+    -->
+    <dl>
+        <dt>올레 1코스</dt>
+        <dd>코스 : 시흥 초등학교 옆</dd>
+        <dd>거리 : 14.6km</dd>
+        <dd>난이도 : 중</dd>
+        <dt>올레 2코스</dt>
+        <dd>코스 : 광치기 해변</dd>
+        <dd>거리 : 12.6km</dd>
+        <dd>난이도 : 하</dd>
+    </dl>
+
+</body>
+</html>

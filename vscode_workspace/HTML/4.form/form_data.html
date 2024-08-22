@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form data 전송</title>
+</head>
+<body>
+    <h1>Form Data 전송</h1>
+    <!-- 
+        <form> 태그 : 서버측에게 데이터를 전송하기
+                      위해 사용하는 태그
+        action : <form> 태그 안의 내용을 서버에
+                 전송할 요청 주소
+        method : 사용자가 입력한 내용을 서버에
+                 전송하는 방식(폼 데이터를 제출하는 방식)
+                 을 지정
+            GET :
+                데이터를 URL 쿼리스트링으로 전송
+                주소 표시줄에 사용자가 입력한 내용이
+                그대로 노출되어 주로 데이터
+                최대 4096byte 까지
+            POST :
+                HTTP 메세지의 본문(body)에 데이터를 포함하여 전송
+                입력 내용의 길이 제한이 없으며, 사용자가
+                입력한 내용이 주소창에 노출되지 않는다.
+                주로 로그인, 폼 데이터 제출, 데이터베이스 갱신
+                작업에 사용
+            entype : 폼 데이터가 서버로 전송될 때의
+                     인코딩 방식을 지정
+                - application/x-www-form-urlencoded(기본값)
+                - multipart/form-data
+                    파일 업로드와 같은 바이너리 데이터 전송에 사용
+                - text/plain
+    -->
+
+    <!-- 教材 141pから -->
+    <!-- query string : ?id=abc&pw=1234 -->
+    <form action="" method="get">
+        ID:
+        <input type="text" name="id" id="id" ><br>
+
+        <label for="pw">PW: </label>
+        <input type="password" name="pw" id="pw"><br>
+        <input type="submit" value="로그인">
+    </form>
+    <!-- <h2><ruby>部屋<rt>へや</rt></ruby>に<ruby>入<rt>はい</rt></ruby>る<ruby>時<rt>とき</rt></ruby>は<ruby>靴<rt>くつ</rt></ruby>を<ruby>脱<rt>ぬ</rt></ruby>ぎます</h2> -->
+</body>
+</html>
