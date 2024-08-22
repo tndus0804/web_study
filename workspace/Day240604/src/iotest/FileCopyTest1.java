@@ -1,0 +1,27 @@
+package iotest;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class FileCopyTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		long start = System.currentTimeMillis();
+		System.out.println("복사 시작");
+		
+		FileInputStream fis = new FileInputStream("test.buf");
+		FileOutputStream fos = new FileOutputStream("testcopy.buf");
+		
+		int data = 0;
+		while(true) {
+			data = fis.read();
+			if(data == -1) break;
+			fos.write(data);
+		}
+		fis.close();
+		fos.close();
+		
+		System.out.println("복사 완료");
+		System.out.println((System.currentTimeMillis() - start) / 1000.0 + "초 걸림");
+		
+	} // main
+} // class
