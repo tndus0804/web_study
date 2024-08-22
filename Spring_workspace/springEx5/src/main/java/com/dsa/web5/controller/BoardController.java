@@ -97,9 +97,9 @@ public class BoardController {
 			, @RequestParam(name = "searchWord", defaultValue = "") String searchWord
 		) {
 		
-		log.debug("properties값: pageSize={}, linkSize={}, uploadPath={}"
+		log.debug("[board-list-controller] properties값: pageSize={}, linkSize={}, uploadPath={}"
 								, pageSize, linkSize, uploadPath);
-		log.debug("요첨 파라미터 : page={}, searchType={}, searchWord={}"
+		log.debug("[board-list-controller] 요청 파라미터 : page={}, searchType={}, searchWord={}"
 								, page, searchType, searchWord);
 		
 		// import org.springframework.data.domain.Page;
@@ -108,13 +108,13 @@ public class BoardController {
 		// 현재페이지, 페이지당 글수, 검색대장, 검색어
 		Page<BoardDTO> boardPage = boardService.getList(page, pageSize, searchType, searchWord);
 		
-		log.debug("목록 정보 getContent(): {}", boardPage.getContent());
-		log.debug("현재 페이지 getNumber(): {}", boardPage.getNumber());
-		log.debug("전체 개수 getTotalElements(): {}", boardPage.getTotalElements());
-		log.debug("전체 페이지수 getTotalPages(): {}", boardPage.getTotalPages());
-		log.debug("한 페이지당 글 수 getSize(): {}", boardPage.getSize());
-		log.debug("이전페이지 존재 여부 hasPrevious(): {}", boardPage.hasPrevious());
-		log.debug("다음페이지 존재 여부 hasNext(): {}", boardPage.hasNext());
+		log.debug("[board-list-controller] 목록 정보 getContent(): {}", boardPage.getContent());
+		log.debug("[board-list-controller] 현재 페이지 getNumber(): {}", boardPage.getNumber());
+		log.debug("[board-list-controller] 전체 개수 getTotalElements(): {}", boardPage.getTotalElements());
+		log.debug("[board-list-controller] 전체 페이지수 getTotalPages(): {}", boardPage.getTotalPages());
+		log.debug("[board-list-controller] 한 페이지당 글 수 getSize(): {}", boardPage.getSize());
+		log.debug("[board-list-controller] 이전페이지 존재 여부 hasPrevious(): {}", boardPage.hasPrevious());
+		log.debug("[board-list-controller] 다음페이지 존재 여부 hasNext(): {}", boardPage.hasNext());
 		 
 	 	model.addAttribute("boardPage", boardPage);		// 출력할 글정보
 	 	model.addAttribute("page", page);				// 현재 페이지
