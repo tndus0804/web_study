@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 목록(페이징X)</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<style>
+		h1 {
+			text-align: center;
+		}
+		#menu {
+			background-color: white;
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<header>
+	<h1><a th:href="@{/board/listAll}">[게시판 - 전체목록]</a></h1>
+	
+	</header>
+	<p>
+		
+	</p>
+	<table>
+		<tr>
+			<td colspan="5" id="menu">
+				<span><a th:href="@{/board/write}">글쓰기</a></span>
+				<span><a th:href="@{/}">HOME</a></span>
+			</td>
+		</tr>
+		<tr>
+			<th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+		<tr>
+		<tr th:each="board : ${boards}">
+			<td th:text="${board.boardNum}"></td>
+			<td>
+				<a th:text="${board.title}" th:href="@{read/{id}(id=${board.boardNum})}"></a>
+				<!-- 
+					<a th:text="${board.title}" th:href="@{/member/delete(id=${item.id})}"></a>
+					//@PostMapping("delete/{id}")
+				 -->
+			</td>
+			<td th:text="${board.memberId}"></td>
+			<td th:text="${board.viewContent}"></td>
+			<td th:text="${board.createDate}"></td>
+		</tr>			
+	</table>
+</body>
+</html>

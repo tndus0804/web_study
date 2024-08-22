@@ -1,0 +1,318 @@
+package com.dsa.web5.controller;
+
+import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.dsa.web5.dto.BoardDTO;
+import com.dsa.web5.dto.ReplyDTO;
+import com.dsa.web5.security.AuthenticatedUser;
+import com.dsa.web5.service.BoardService;
+import com.dsa.web5.util.FileManager;
+
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
+@RequiredArgsConstructor
+@RequestMapping("board")
+public class BoardController {
+	
+	private final BoardService boardService;
+	
+	@Value("${board.pageSize}")
+	int pageSize;		// 페이지장 글 수
+	
+	@Value("${board.linkSize}")
+	int linkSize; 		// 페이지 이동 링크 수, 페이지 번호 링크의 개수
+	
+	// value 임포트 오른쪽 코드로 할것  org.springframework.beans.factory.annotation.Value;
+	// application.properties 파일의 게시판 관련 설정 값
+	@Value("${board.uploadPath}")
+	String uploadPath;	// 첨부파일 저장 경로
+	
+	/**
+	 * 글쓰기 폼으로 이동
+	 */
+	@GetMapping("write")
+	public String write() {
+		return "board/writeForm";
+	}
+	
+	/**
+	 * 글 저장
+	 * @param boardDTO 작성한 글 정보
+	 * @param user 로그인한 사용자 정보
+	 * @param MultipartFile 첨부파일
+	 * @return listenAll.html
+	 */
+	@PostMapping("write")
+	public String write(
+			@ModelAttribute BoardDTO boardDTO,
+			@RequestParam(name = "upload", required = false) MultipartFile upload,
+			@AuthenticationPrincipal AuthenticatedUser user
+			) {
+		boardDTO.setMemberId(user.getUsername());
+		log.debug("[board-write-controller] 저장할 첨부파일 정보: {}", upload.getOriginalFilename());
+		log.debug("[board-write-controller] 저장할 글 정보: {}", boardDTO);
+		
+		try {
+			boardService.write(boardDTO, uploadPath, upload);
+			return "redirect:/board/listAll";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "board/writeForm";
+		}
+	}
+	
+	/**
+	 * 게시판 전체 글 목록. 페이징O
+	 * @param Model
+	 * @param page			현재 페이지(default: 0)
+	 * @param searchType	검색 대상(default: "")
+	 * @param serachWord	검색어(default" "")
+	 * @return list.html
+	 */
+	@GetMapping("list")
+	public String list(
+			Model model
+			, @RequestParam(name = "page", defaultValue="1") int page
+			, @RequestParam(name = "serachType", defaultValue = "") String searchType
+			, @RequestParam(name = "searchWord", defaultValue = "") String searchWord
+		) {
+		
+		log.debug("properties값: pageSize={}, linkSize={}, uploadPath={}"
+								, pageSize, linkSize, uploadPath);
+		log.debug("요첨 파라미터 : page={}, searchType={}, searchWord={}"
+								, page, searchType, searchWord);
+		
+		// import org.springframework.data.domain.Page;
+		// Page, Pageable : Spring Data Jpa에서 페이징과 관련된 작업을
+		//					간편하게 처리하기 위한 클래스 및 인터페이스
+		// 현재페이지, 페이지당 글수, 검색대장, 검색어
+		 Page<BoardDTO> boards = boardService.getList(
+				 page, pageSize, searchType, searchWord);
+		// model.addAttribute("boards", boards);
+		
+		
+		return "board/listAll";
+	}
+	
+	/**
+	 * 게시판 전체 글 목록. 페이징X
+	 * @param Model
+	 * @return listAll.html
+	 */
+	@GetMapping("listAll")
+	public String listAll(Model model) {
+		List<BoardDTO> boards = boardService.getListAll();
+		
+		model.addAttribute("boards", boards);
+		
+		return "board/listAll";
+	}
+	
+	@GetMapping("read/{id}")
+	public String read(
+				@PathVariable(name = "id") Integer id,
+				Model model
+			){
+		BoardDTO board = boardService.getBoard(id);
+		model.addAttribute("board", board);
+		log.debug("[board-read-controller] 가져온 board {}", board);
+		
+		return "board/read";
+	}
+	
+	/**
+	 * 게시글 상세보기
+	 * @param Model
+	 * @param boardNum 조히할 글 번호
+	 * @return read.html
+	 */
+//	th:href="@{read(boardNum=${board.boardNum})}">
+	@GetMapping("read")
+	public String read(
+			Model model,
+			@RequestParam(name = "boardNum", defaultValue = "0") Integer boardNum
+			) {
+		BoardDTO board = boardService.getBoard(boardNum);
+		model.addAttribute("board", board);
+		log.debug("[board-read-controller] 가져온 board {}", board);
+		return "board/read";
+	}
+	
+	/**
+	 * 첨부파일 다운로드
+	 * @param boardNum		글번호
+	 * @return response		응답번호
+	 */
+	@GetMapping("download")
+	public void download(
+			@RequestParam("boardNum") Integer boardNum
+			, HttpServletResponse response
+		) {
+		log.debug("[board-download-controller] download 실행");
+		boardService.download(boardNum, response, uploadPath);
+	}
+	
+	/**
+	 * 게시글 추천
+	 * @param boardNum
+	 * @return read.html
+	 */
+	// location.href = 'like?boardNum=' + boardNum;
+	@GetMapping("like")
+	public String like(
+				@RequestParam(name = "boardNum") int boardNum
+			) {
+		try {
+			boardService.setLike(boardNum);
+			return "redirect:read?boardNum=" + boardNum;
+		} catch (Exception e) {
+			return "redirect:listAll";
+		}			
+	}
+	
+	/**
+	 * 게시글 수정 폼으로 이동
+	 * @param boardNum	수정할 글 번호
+	 * @param user		로그인한 사용자 정보
+	 * @param Model		
+	 * @return updateForm.html
+	 */
+	@GetMapping("update")
+	public String update(
+			@RequestParam("boardNum") int boardNum
+			, @AuthenticationPrincipal AuthenticatedUser user
+			, Model model
+			) {
+		try {
+			BoardDTO boardDTO = boardService.getBoard(boardNum);
+			if (!user.getUsername().equals(boardDTO.getMemberId())) {
+				throw new RuntimeException("수정권한이 없습니다.");
+			}
+			model.addAttribute("board", boardDTO);			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:listAll";
+		}
+		
+		return "board/updateForm";
+	}
+	
+	/**
+	 * 게시글 수정 처리
+	 * @param boardDTO	수정할 글정보
+	 * @param user		로그인한 사용자 정보
+	 * @param upload	첨부파일
+	 * @return read.html
+	 */
+	@PostMapping("update")
+	public String update(
+			@ModelAttribute BoardDTO boardDTO
+			, @AuthenticationPrincipal AuthenticatedUser user
+			, @RequestParam(name = "upload", required = false) MultipartFile upload
+			) {
+		try {
+//		log.debug("[board-update-controller]boardNum은 {}임---------", boardNum);
+//		log.debug("[board-update-controller] 수정할 제목: {}/내용: {}", boardDTO.getTitle(), boardDTO.getContents());
+			boardService.update(boardDTO, user.getUsername(), uploadPath, upload);
+			return "redirect:read?boardNum=" + boardDTO.getBoardNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:listAll";
+		}
+		
+		
+//		if(!file.isEmpty()) {
+//			log.debug("[board-update-controller] file의 이름은 {}", file.getOriginalFilename());
+//		} else {
+//			log.debug("[board-update-controller] 비어있는 파일입니다.!");
+//		}
+	}
+	
+	/**
+	 * 게시글 삭제
+	 * @param boardNum	삭제할 글번호
+	 * @param user		로그인한 사용자 정보
+	 * @return list.html
+	 */
+	@GetMapping("delete")
+	public String delete(
+			@RequestParam(name = "boardNum") int boardNum
+			, @AuthenticationPrincipal AuthenticatedUser user
+			) {
+		BoardDTO boardDTO = boardService.getBoard(boardNum);
+		
+		if(!user.getUsername().equals(boardDTO.getMemberId())) {
+			throw new RuntimeException("삭제권한이 없습니다.");
+//			return "redirect:/board/listAll");
+		}
+		
+		try {
+//			log.debug("[board-delete-controller] 삭제");
+			boardService.delete(boardNum, uploadPath, user.getUsername());			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/board/listAll";
+	}
+		
+	/**
+	 * 리플 작성
+	 * @param replyDTO		저장할 리플 정보
+	 * @param user			로그인한 사용자 아이디
+	 * @return read.html
+	 */
+	@PostMapping("replyWrite")
+	public String replyWrite(
+			@ModelAttribute ReplyDTO replyDTO
+			, @AuthenticationPrincipal AuthenticatedUser user
+			) {
+		replyDTO.setMemberId(user.getUsername()); // 리플 작성자 정보 추가
+		boardService.replyWrite(replyDTO);
+
+		return "redirect:read?boardNum=" + replyDTO.getBoardNum();
+	}
+	
+	/**
+	 * 리플 삭제
+	 * @param replyDTO 삭제할 리플번호와 본문 글번호
+	 * @param user 로그인한 사용자 정보
+	 * @return read.html
+	 */
+	// http://localhost:9995/web5/board/replyDelete?replyNum=1&boardNum=6
+	@GetMapping("replyDelete")
+	public String delete(
+			@ModelAttribute ReplyDTO replyDTO
+			, @AuthenticationPrincipal AuthenticatedUser user
+			) {
+		try {
+			boardService.replyDelete(replyDTO.getReplyNum(), user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/board/read?boardNum=" + replyDTO.getBoardNum();
+	}
+	
+	
+
+}

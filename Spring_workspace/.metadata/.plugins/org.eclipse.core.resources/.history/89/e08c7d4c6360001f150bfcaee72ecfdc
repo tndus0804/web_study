@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>게시판</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+
+	<!-- 페이지 이동 스크립트  -->
+	<script>
+		function pagingFormSubmit(currentPage) {
+			$('#page').val(currentPage);
+			$('#pagingForm').submit();
+		}
+	</script>
+
+</head>
+<body>
+<header>
+	<h1><a th:href="@{/board/list}">[ 게시판 ]</a></h1>
+</header>
+	
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	  xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 읽기</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<style>
+		#toBack td{
+			background-color: white;
+			text-align: right;
+			cursor:pointer;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('#toBack a').click(function() {
+				window.history.back();
+			});
+		});
+		
+		function recommandFunc() {
+			location
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1>[게시글 읽기]</h1>
+	</header>
+	
+	<section>
+		<table>
+			<tr id="toBack">
+				<td colspan="2"><a>뒤로가기</a></td>
+			</tr>			
+			<tr>
+				<th style="width: 100px">작성자</th>
+				<td style="width: 600px" th:if="${board != null}">
+					(이름: <span th:text="${board.memberId}"></span>)
+				</td>
+			</tr>
+			<tr>
+				<th>작성일</th>
+				<td th:if="${board != null}" th:text="${#temporals.format(board.createDate, 'yyyy년 MM월 dd일 a hh시 mm분 ss초')}"></td>
+			</tr>
+			<tr>
+				<th>조회수</th>
+				<td th:if="${board != null}" th:text="${board.viewCount}"></td>
+			</tr>
+			<tr>
+				<th>추천수</th>
+				<td th:if="${board != null}" th:text="${board.likeCount}"></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td th:if="${board != null}" th:text="${board.title}"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td th:if="${board != null}" th:text="${board.contents}"></td>
+			</tr>
+			<tr>
+				<th>파일첨부</th>
+				<td th:if="${board != null}" th:text="${board.fileName}"></td>
+			</tr>
+		</table>
+		<form method="get">
+			<p style="text-align:center;">
+				<button type="button" th:href="@{/board/listAll}">추천</button>
+				<button type="button">수정</button>
+				<button type="button">삭제</button>
+			</p>		
+		</form>
+	</section>
+	
+	
+		
+</body>
+</html>

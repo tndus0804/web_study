@@ -1,0 +1,25 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Enum"><rhs name\="org.springframework.web.bind.annotation.RequestMethod"/><rhs name\="jakarta.persistence.GenerationType"/><rhs name\="jakarta.persistence.FetchType"/><rhs name\="jakarta.persistence.CascadeType"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="org.springframework.web.bind.annotation.RequestMethod"/><rhs name\="jakarta.persistence.GenerationType"/><rhs name\="jakarta.persistence.FetchType"/><rhs name\="jakarta.persistence.CascadeType"/></lhs><lhs name\="com.dsa.web3.entity.MemberEntity"><rhs name\="com.dsa.web3.entity.MemberEntity"/></lhs><lhs name\="com.dsa.web3.dto.MemberDTO"><rhs name\="com.dsa.web3.dto.MemberDTO"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/><rhs name\="org.springframework.data.domain.PageImpl"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="com.dsa.web4.entity.GuestBookEntity"><rhs name\="com.dsa.web4.entity.GuestBookEntity"/></lhs><lhs name\="com.dsa.web5.entity.MemberEntity"><rhs name\="com.dsa.web5.entity.MemberEntity"/></lhs><lhs name\="com.dsa.web5.dto.MemberDTO"><rhs name\="com.dsa.web5.dto.MemberDTO"/></lhs><lhs name\="com.dsa.web5.dto.BoardDTO"><rhs name\="com.dsa.web5.dto.BoardDTO"/></lhs><lhs name\="java.io.IOException"><rhs name\="java.io.UnsupportedEncodingException"/></lhs><lhs name\="java.lang.Exception"><rhs name\="java.io.UnsupportedEncodingException"/></lhs><lhs name\="java.lang.Throwable"><rhs name\="java.io.UnsupportedEncodingException"/></lhs><lhs name\="java.io.UnsupportedEncodingException"><rhs name\="java.io.UnsupportedEncodingException"/></lhs><lhs name\="java.io.InputStream"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="java.io.FileInputStream"><rhs name\="java.io.FileInputStream"/></lhs><lhs name\="org.springframework.http.HttpEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="org.springframework.http.ResponseEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="com.dsa.web5.entity.BoardEntity"><rhs name\="com.dsa.web5.entity.BoardEntity"/></lhs><lhs name\="org.springframework.data.domain.Slice"><rhs name\="org.springframework.data.domain.PageImpl"/></lhs><lhs name\="org.springframework.data.util.Streamable"><rhs name\="org.springframework.data.domain.PageImpl"/></lhs><lhs name\="java.util.function.Supplier"><rhs name\="org.springframework.data.domain.PageImpl"/></lhs><lhs name\="org.springframework.data.domain.Page"><rhs name\="org.springframework.data.domain.PageImpl"/></lhs></history>
+content_assist_number_of_computers=14
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=1
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.exception.name=e
+org.eclipse.jdt.ui.formatterprofiles.version=23
+org.eclipse.jdt.ui.gettersetter.use.is=true
+org.eclipse.jdt.ui.overrideannotation=true
+spelling_ignore_ampersand_in_properties=true
+spelling_ignore_digits=true
+spelling_ignore_java_strings=true
+spelling_ignore_mixed=true
+spelling_ignore_non_letters=true
+spelling_ignore_sentence=true
+spelling_ignore_single_letters=true
+spelling_ignore_upper=true
+spelling_ignore_urls=true
+spelling_locale_initialized=true
+spelling_user_dictionary_encoding=x-windows-949
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
