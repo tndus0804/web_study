@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01. CSS 기본문법</title>
+
+    <!-- 외부 css 파일 참조 -->
+    <link rel="stylesheet" href="styleTest.css">
+
+    <style>
+        /* ctrl + / : 주석 */
+        /* 
+            * CSS란?
+                CSS(Cascading Style Sheet) 는 HTML 문서의
+                시각적 표현을 정의하는 스타일 시트 언어.
+            * Cascading: 폭포, 위에서 아래로 쏟아지는..
+                CSS에서 상속은 한 요소가 자신의 부모 요소로부터
+                스타일을 물려받는 것을 의미.
+                상속을 통해 스타일을 간결하고 효율적으로 관리.
+                but 모든 속성이 상속되는 것은 아님.
+                 - 일반적인 텍스트와 관련된 속성은 상속 O
+                   ex. color, font-family, font-size, ...
+                 - 박스 모델과 레이아웃과 관련된 속성은 상속 X
+                   ex. display, margin, padding, border, ...
+
+            * 스타일을 적용하는 방법
+            1. 인라인 방식(직접 태그안에 style 속성)
+            2. HTML문서 내의 <head> 태그 안에 <style> 태그를
+                통해 선택자로 접근하여 변경
+            3. 외부 파일에서 '선택자'로 접근하여 변경
+
+            선택자 {
+                스타일 속성 : 속성 값;
+            }
+        */
+        body {
+            background-color: beige;
+            font-size: 30px;
+        }
+
+        h1 {
+            color:pink;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <h1>내부 SytleSheet</h1>
+    <h2>외부 SytleSheet</h2>
+    <h3 style="color: red">인라인 SytleSheet</h3>
+    
+</body>
+</html>
