@@ -1,0 +1,16 @@
+package iotest;
+
+import java.io.FileWriter;
+
+public class FileReaderTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		String str = "자바 Stream 입출력";
+		FileWriter fw = new FileWriter("test.txt");
+		fw.write(str);
+		
+		fw.close();
+		
+	} // main
+	
+} // class

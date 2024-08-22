@@ -1,0 +1,116 @@
+package net.datasa.school.ui;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import net.datasa.school.service.StudentService;
+import net.datasa.school.vo.Student;
+
+public class StudentUI {
+	Scanner sc = new Scanner(System.in);
+	StudentService service = new StudentService();
+	
+	public StudentUI() {
+		String choice;
+		while(true) {
+			menu();
+			choice = sc.next();
+			switch(choice) {
+			case "1":
+				studentAdd();
+				break;
+			case "2":
+				selectByNum();
+				break;
+			case "3":
+				selectAll();
+				break;
+			case "4":
+				updateStudent();
+				break;
+			case "5":
+				deleteStudent();
+				break;
+			case "0":
+				System.out.println("* 프로그램 종료");
+				return;
+			default:
+				System.out.println("* 메뉴에 있는 번호를 고르세요.");
+			}
+		}
+	}
+
+	// 학생 전학
+	private void deleteStudent() {
+		System.out.println("< 학생 전학 >");
+		
+	}
+
+	// 학생 성적 수정
+	private void updateStudent() {
+		System.out.println("< 학생 성적 수정 >");
+		
+	}
+
+	// 학생 전체 조회
+	private void selectAll() {
+		System.out.println("< 학생 전체 조회 >");
+		
+	}
+
+	// 학생 정보 조회(1명)
+	private void selectByNum() {
+		System.out.println("< 학생 정보 조회(1명) >");
+		System.out.print("> 검색할 학생의 학번: ");
+		int num;
+		try {
+			num = sc.nextInt();
+		} catch(InputMismatchException e) {
+			System.out.println("숫자를 입력해주세요!");
+			return;
+		}
+		service.selectByNum(num);
+		System.out.println("* 해당");
+		
+	}
+
+	// 학생 등록
+	private void studentAdd() {
+		System.out.println("< 학생 등록 >");
+		String name = "";
+		int kor = 0;
+		int eng = 0;
+		int math = 0;
+		try {
+			System.out.print("이름: ");
+			name = sc.next();
+			System.out.print("국어 점수: ");
+			kor = sc.nextInt();
+			System.out.print("영어 점수: ");
+			eng = sc.nextInt();
+			System.out.print("수학 점수: ");
+			math = sc.nextInt();
+		} catch(InputMismatchException e) {
+			System.out.println("키와 몸무게는 숫자로 입력해주세요");
+			sc.nextLine();
+			return;
+		}
+		
+		Student student = new Student(name, kor, eng, math);
+		service.studentAdd(student);
+		System.out.println("* 학생 등록 성공!");
+			
+	}
+
+	private void menu() {
+		System.out.println("<< 학생 성적 관리 >>");
+		System.out.println("  1. 학생 등록");
+		System.out.println("  2. 학생 정보 조회(1명)");
+		System.out.println("  3. 학생 전체 조회");
+		System.out.println("  4. 학생 성적 수정");
+		System.out.println("  5. 학생 전학");
+		System.out.println("  0. 프로그램 종료");
+		System.out.println("======================");
+		System.out.print("  선택 > ");
+	}
+	
+}

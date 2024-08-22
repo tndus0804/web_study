@@ -1,0 +1,21 @@
+package iotest;
+
+import java.io.FileInputStream;
+
+public class FileInputStreamTest2 {
+	
+	public static void main(String[] args) throws Exception {
+		
+		FileInputStream fis = new FileInputStream("test.txt");
+		
+		
+		
+		for(byte b : data) {
+			System.out.print(b);
+		}
+		
+		
+		
+	} // main
+	
+} // class

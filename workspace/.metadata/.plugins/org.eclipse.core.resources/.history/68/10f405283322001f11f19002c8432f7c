@@ -1,0 +1,12 @@
+package iotest;
+
+import java.io.FileInputStream;
+
+public class FileWriterTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		 
+		
+	} // main
+	
+} // class

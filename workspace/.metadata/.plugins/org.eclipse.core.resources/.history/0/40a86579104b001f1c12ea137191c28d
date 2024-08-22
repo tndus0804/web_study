@@ -1,0 +1,104 @@
+package net.datasa.school.vo;
+
+public class Student {
+	//멤버변수(필드)
+	private int stdNum;			  // 학번(고유)
+	private String name;		  // 학생명
+	private int kor;			  // 국어 점수
+	private int eng;			  // 영어 점수
+	private int math;			  // 수학 점수
+	private int total;			  // 총점
+	private double avg;			  // 평균
+	private static int num = 100; // 학번 자동발생
+	
+	//사용자 정의 생성자
+	public Student(String name, int kor, int eng, int math) {
+		this.stdNum = num++;
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	
+	//3과목의 평균 계산
+	private void calcAvg() {
+		avg = calcSum() / 3;
+	}
+	
+	  // 총점계산
+	private int calcSum() {
+		this.total = kor + eng + math;
+		return total;
+	}
+	
+	//엑세서(accessor) Getter, Setter
+	public static int getNum() {
+		return num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getKor() {
+		return kor;
+	}
+
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+
+	public int getEng() {
+		return eng;
+	}
+
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+
+	public int getMath() {
+		return math;
+	}
+
+	public void setMath(int math) {
+		this.math = math;
+	}
+
+	public double getAvg() {
+		return avg;
+	}
+	
+	public int getTotal() {
+		return total;
+	}
+
+	//toString() 재정의
+	@Override
+	public String toString() {		
+		return String.format("학번: %d 이름: %s 국어: %d 영어: %d 수학: %d 총점: %d 평균: %f"
+								, stdNum, name, kor, eng, math, total, avg);
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

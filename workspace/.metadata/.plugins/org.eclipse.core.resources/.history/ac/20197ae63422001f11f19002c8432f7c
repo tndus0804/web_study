@@ -1,0 +1,23 @@
+package iotest;
+
+import java.io.FileReader;
+
+public class FileReaderTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		FileReader fr = new FileReader("test.txt");
+		int ch = 0;
+		// 1글자씩
+		while(true) {
+			ch = fr.read();
+			if(ch == -1) break;
+			System.out.print((char) ch);
+		}
+		fr.close();
+		//한꺼번에
+		fr = new FileReader("test.txt");
+		
+		
+	} // main
+	
+} // class

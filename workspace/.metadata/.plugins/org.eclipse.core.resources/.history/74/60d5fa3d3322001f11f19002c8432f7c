@@ -1,0 +1,11 @@
+package iotest;
+
+public class FileWriterTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		String str = "자바 Stream 입출력";
+		 
+		
+	} // main
+	
+} // class

@@ -1,0 +1,18 @@
+package iotest;
+
+import java.io.FileInputStream;
+
+public class FileInputStreamTest1 {
+	
+	public static void main(String[] args) throws Exception {
+		
+		FileInputStream fis = new FileInputStream("text.txt");
+		int size = fis.available();
+		byte[] data = new byte[size];
+		
+		
+		
+		
+	} // main
+	
+} // class

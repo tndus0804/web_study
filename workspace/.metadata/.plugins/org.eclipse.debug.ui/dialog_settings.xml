@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
+		<item key="DIALOG_WIDTH" value="270"/>
+		<item key="DIALOG_HEIGHT" value="436"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="org.eclipse.debug.ui.SCOPED_SAVE_SELECTION_DIALOG">
+		<item key="DIALOG_WIDTH" value="309"/>
+		<item key="DIALOG_HEIGHT" value="377"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="FAVORITES_DIALOG_SECTION">
+		<item key="DIALOG_X_ORIGIN" value="331"/>
+		<item key="DIALOG_Y_ORIGIN" value="198"/>
+		<item key="DIALOG_WIDTH" value="450"/>
+		<item key="DIALOG_HEIGHT" value="500"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATIONS_DIALOG_SECTION">
+		<item key="org.eclipse.debug.ui.DIALOG_SASH_WEIGHTS_1" value="466"/>
+		<item key="org.eclipse.debug.ui.DIALOG_SASH_WEIGHTS_2" value="533"/>
+		<item key="org.eclipse.debug.ui.EXPANDED_NODES" value=", org.eclipse.jdt.launching.localJavaApplication, "/>
+		<item key="DIALOG_WIDTH" value="1376"/>
+		<item key="DIALOG_HEIGHT" value="1032"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="org.eclipse.debug.ui.SELECT_FAVORITESS_DIALOG">
+		<item key="DIALOG_WIDTH" value="317"/>
+		<item key="DIALOG_HEIGHT" value="404"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+	<section name="ExportLaunchConfigurations">
+		<section name="ExportLaunchConfigurationsWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="414"/>
+			<item key="DIALOG_Y_ORIGIN" value="-44"/>
+			<item key="DIALOG_WIDTH" value="613"/>
+			<item key="DIALOG_HEIGHT" value="601"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
+	</section>
+</section>

@@ -1,0 +1,46 @@
+package net.datasa.school.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.datasa.school.vo.Student;
+
+public class StudentService {
+	List<Student> list = new ArrayList<>();
+	
+	public void studentAdd(Student student) {
+		student.calcAvg();
+		list.add(student);
+	}
+	
+	public Student selectByNum(int num) {
+		Student student = null;
+		for(Student s : list) {
+			if(s.getStdNum() == num) {
+				student = s;
+			}
+		}
+		return student;
+	}
+	
+	public void selectAll() {
+		if(list.size() == 0) {
+			System.out.println("학생이 존재하지 않습니다.");
+			return;
+		}
+		for(Student s : list) {
+			System.out.println(s);
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

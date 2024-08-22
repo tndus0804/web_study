@@ -1,0 +1,20 @@
+package iotest;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class FileCopyTest1 {
+	
+	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		System.out.println("복사 시작");
+		
+		FileInputStream fis = new FileInputStream("test.buf");
+		FileOutputStream fos = new FileOutputStream("testcopy.buf");
+		
+		int data = 0;
+		
+		
+		
+		
+	} // main
+} // class

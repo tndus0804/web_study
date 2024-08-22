@@ -1,0 +1,16 @@
+package iotest;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class BufferTest2 {
+	
+	public static void main(String[] args) throws Exception {
+		FileReader fr = new FileReader("애국가.txt");
+		
+		
+		
+		
+	} // main
+} // class

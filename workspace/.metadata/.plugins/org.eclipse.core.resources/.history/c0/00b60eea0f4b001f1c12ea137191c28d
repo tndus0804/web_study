@@ -1,0 +1,25 @@
+package net.datasa.school.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.datasa.school.vo.Student;
+
+public class StudentService {
+	List<Student> list = new ArrayList<>();
+	
+	public void studentAdd() {
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

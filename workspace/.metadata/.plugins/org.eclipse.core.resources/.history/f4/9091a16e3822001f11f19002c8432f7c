@@ -1,0 +1,19 @@
+package iotest;
+
+import java.io.FileReader;
+
+public class FileReaderTest2 {
+	
+	public static void main(String[] args) throws Exception {
+		FileReader fr = new FileReader("test.txt");
+		
+		//한꺼번에
+		char[] text = new char[100];
+		int num = fr.read(text);
+		System.out.println("읽은 문자 개수: " + num);
+		System.out.println(text);
+		fr.close();
+		
+	} // main
+	
+} // class
