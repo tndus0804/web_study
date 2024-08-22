@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+	
+		function check() {
+			let inputName = document.getElementById("inputName");
+			let inputPw = document.getElementById("inputPw");
+			let inputMessage = document.getElementById("inputMessage");
+			
+			if(inputName.value.length < 1 || inputName.value == '') {
+				alert("이름을 입력해주세요");
+				return false;
+			}
+			if(inputPw.value.length < 1 || inputPw.value == '') {
+				alert("비밀번호를 입력해주세요");
+				return false;
+			}
+			if(inputMessage.value.length < 1 || inputMessage.value == '') {
+				alert("내용을 입력해주세요");
+				return false;
+			}
+			
+			
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1>글쓰기</h1>
+	
+	<form th:action="@{write}" onsubmit="return check()" method="post">
+		<p>이름</p>
+		<input type="text" placeholder="이름을 입력하세요" name="name" id="inputName">
+		<p>비밀번호</p>
+		<input type="text" placeholder="비밀번호 입력하세요" name="password" id="inputPw">
+		<p>내용</p>
+		<input type="text" placeholder="내용을 입력하세요" name="message" id="inputMessage">
+		<p><input type="submit"></p>
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		function submitFunc(){
+			let pw = document.getElementById("password");
+			if(pw.value.length < 1 || pw.value == '') {
+				alert("비밀번호 입력해주세요");
+				return false;
+			}
+			//window.close();
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1>[ pw 찾기 ]</h1>
+		<form th:action="@{searchPw}" method="post" onsubmit="return submitFunc()">
+			<select name="id">
+				<th:block th:each="member:${members}">
+					<option th:value="${member.memberId}" th:text="${member.memberId}"></option>
+				</th:block>
+			</select>
+			<input type="text" name="password" id="password"><br>
+			<input type="submit" value="비밀번호 변경">
+		</form>
+	</header>
+
+</body>
+</html>

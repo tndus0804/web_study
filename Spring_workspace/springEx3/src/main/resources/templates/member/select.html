@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>회원정보조회 결과</title>
+	<style>
+		table, td{
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+	<h1>[ ID 조회 ]</h1>
+	
+	<div th:if="${member == null}">
+		<p><span th:text="${searchId}"></span>:없는 회원입니다.</p>
+	</div>
+	<div th:if="${member != null}">
+		<p>ID:		<span th:text="${member.id}"></span></p>
+		<p>PW:		<span th:text="${member.pw}"></span></p>
+		<p>NAME:	<span th:text="${member.name}"></span></p>
+		<p>PHONE:	<span th:text="${member.phone}"></span></p>
+		<p>ADDRESS: <span th:text="${member.address}"></span></p>
+	</div>
+	
+				<!-- 
+	<table>
+			<tr>
+				<td>ID</td>
+				<td th:text="${session.loginMember != null ? session.loginMember.id : ''}"></td>
+				
+				<td th:if="${result.member != null}" th:text="${result.member.id}"></td>
+				<td th:unless="${result.member != null}">[[${searchId}]]: 없는 회원입니다.</td>
+				
+			</tr>
+			<tr>
+				<td>PW</td>
+				<td th:text="${session.loginMember != null ? session.loginMember.pw : ''}"></td>
+			</tr>
+			<tr>
+				<td>NAME</td>
+				<td th:text="${session.loginMember != null ? session.loginMember.name : ''}"></td>
+			</tr>
+			<tr>
+				<td>PHONE</td>
+				<td th:text="${session.loginMember != null ? session.loginMember.phone : ''}"></td>
+			</tr>
+			<tr>
+				<td>ADDRESS</td>
+				<td th:text="${session.loginMember != null ? session.loginMember.address : ''}"></td>
+			</tr>
+		</table>
+				-->
+</body>
+</html>

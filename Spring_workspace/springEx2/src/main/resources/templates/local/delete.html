@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		window.onload = function() {
+			//localStorage.removeItem('code');
+			// 모든 데이터 삭제 시
+			// localStorage.clear();
+			
+			//sessionStorage.removeItem('code');
+			// 모든 데이터 삭제 시
+			// sessionStorage.clear();
+		}
+		function deleteLocal() {
+			localStorage.removeItem('code');
+		}
+		function deleteSession() {
+			sessionStorage.removeItem('code');
+		}
+	</script>
+</head>
+<body>
+	<h1>delete</h1>
+	<input type="button" value="로컬 스토리지 삭제" onclick="deleteLocal()">
+	<input type="button" value="세션 스토리지 삭제" onclick="deleteSession()">
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		#list_header {
+			/*background-color: MediumSpringGreen;*/
+			background-color: beige;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		
+		td {
+			border: 1px solid black;
+			text-align: center;
+			padding: 5px 20px;
+			width: 100px;
+			height: 50px;
+		}
+		.list_body {
+			background-color: LightCyan;
+		}
+	</style>
+	<script>
+		function deleteFunc(paramId) {
+			location.href = 'delete?id=' + paramId;
+		}
+	</script>
+</head>
+<body>
+	<h1>회원 조회</h1>
+	<table>
+		<tr id="list_header">
+			<td>no</td>
+			<td>ID</td>
+			
+			<td>NAME</td>
+			<td>PHONE</td>
+			<td style="width: 400px;">ADDRESS</td>
+			<td style="width: 200px;">DELETE</td>
+		</tr>
+		<tr th:each="item, i : ${list}" class="list_body">
+			<td th:text="${i.count}"></td>
+			<td th:text="${item.id}"></td>
+			
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.phone}"></td>
+			<td th:text="${item.address}"></td>
+			<td>
+				<a th:href="@{/member/delete(id=${item.id})}" th:text="삭제1"></a>
+				<a th:href="|javascript:location.href='delete?id=${item.id}'|" th:text="삭제2"></a>
+				<a th:href="|javascript:deleteFunc('${item.id}')|" th:text="삭제3"></a>
+                <input type="button" value="삭제4" th:tid="${item.id}"th:onclick="deleteFunc(this.getAttribute('tid'))">
+				   
+				<!-- <button th:onclick = "|location.href='@{delete(id=${item.id})}'|">삭제(get)</button> -->
+				<!-- <button th:onclick = "|location.href='@{delete(id=${item.id})}'|">삭제(get)</button> --> 
+				 
+				<form th:action="@{/member/delete/{id}(id=${item.id})}" method="post">
+					<input type="submit" value="삭제(post)">
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

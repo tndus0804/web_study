@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		let textareas;
+		window.onload = function() {
+			textareas = document.getElementsByClassName("textareas-msg");
+			
+			for(textarea of textareas) {
+				resizeHeight(textarea);
+				console.log("00");
+			}
+		}
+		window.onresize = function() {
+			textareas = document.getElementsByClassName("textareas-msg");
+			for(textarea of textareas) {
+				resizeHeight(textarea);
+				console.log("11");
+			}
+		}
+			
+			
+		function resizeHeight (textarea) {
+			textarea.style.height = 'auto';
+			textarea.style.height = (textarea.scrollHeight + 2) + 'px';
+		}		
+	</script>
+	<style>
+		div#guest-list-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr); 
+		}
+	
+		div.guestList {
+			background-color: lightpink;
+		    /*같은 단위 반복일때 사용, 5개 중 3개 항목만 동일하게. */
+		    grid-template-rows: minmax(100px, auto); /*위의 columns 함수(항목,단위)값에 영향 받아서 3개에만 적용.최소값 100px 최대값은 auto로*/
+    		margin: 5px 20px;
+    		padding: 20px 50px;
+		}
+		div.guestList p textarea {
+			height: auto;
+		}
+		div.guestList p input, textarea{
+			width: 100%;
+			box-sizing: border-box;
+		}
+		.guestList input[type=submit] {
+			width: calc(100%) ;
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		
+	</style>
+</head>
+<body>
+	<h1>방명록</h1>
+	<div id="guest-list-container">
+	
+		<div th:each="book, i : ${list}" class="guestList">
+			<p>글번호: <span th:text="${book.num}"></span> 작성자: <span th:text="${book.name}"></span></p>
+			<p>작성일: <span th:text="${book.inputdate}"></span></p>
+			<p><textarea th:text="${book.message}" style="resize:vertical;" readonly class="textareas-msg"></textarea></p>
+			<form th:action="@{delete/{id}(id=${book.num})}" method="post">
+				<p><input type="text" placeholder="비밀번호를 입력하세요" name="password"></p>
+				<p><input type="submit" value="삭제"></p>		
+			</form>
+		</div>
+	
+	</div>
+	
+</body>
+</html>
