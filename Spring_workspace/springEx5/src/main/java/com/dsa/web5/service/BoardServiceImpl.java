@@ -390,7 +390,8 @@ public class BoardServiceImpl implements BoardService {
 				entityPage = boardRepository.selectMemberId(searchWord, pageable);
 				break;
 			case "all":
-				entityPage = boardRepository.findByTitleContainingOrContentsContainingOrMember_MemberIdContaining(searchWord, searchWord, searchWord, pageable);
+//				entityPage = boardRepository.findByTitleContainingOrContentsContainingOrMember_MemberIdContaining(searchWord, searchWord, searchWord, pageable);
+				entityPage = boardRepository.searchAll(searchWord, pageable);
 				break;
 			default:
 				entityPage = boardRepository.findAll(pageable);
