@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>comment.html</title>
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<style>
+		#comment				{width: 350px; }
+		tbody tr:nth-child(odd) { background-color: #FFF2F2; }
+		th						{ width: 80px;
+								  background-color: #FEEBFD; }
+		th.w300					{ width: 300px; }
+		td						{ text-align: center; }
+	</style>
+	<script>
+		/*
+			-- DB에 추가할 테이블 (댓글 기능) web6
+			create table ajax_comment (
+				num		int				primary key auto_increment,
+				name	varchar(30)		not null,
+				comment varchar(1000)	not null
+			);
+		*/
+	
+		$(document).ready(function() {
+			// 목록 가져오기 호출
+			list();
+			// 댓글 작성 버튼 클릭 이벤트
+			$("#inputButton").click(inputButtonClick);
+		});
+		
+		// 목록 가져오기
+		function list() {
+			$.ajax({
+				url: 'getCommentList',
+				type: 'get',
+				dataType: "json",
+				success: function(list) {
+					console.log(list);
+					$('#commentTbody').empty();
+					
+					$(list).each(function(i, ob) {
+						let html = `
+							<tr>
+								<td class="numTd">${ob.num}</td>
+								<td>${ob.name}</td>
+								<td class="commentTd">${ob.comment}</td>
+								<td>
+									<button class="deleteButton" data-num="${ob.num}">삭제</button>
+								</td>
+								<td>
+									<button class="updateButton">수정</button>
+								</td>
+							</tr>
+							
+						`;
+						$('#commentTbody').append(html);
+					});
+					
+					// 삭제 버튼 클릭 이벤트
+					$('.deleteButton').click(deleteButtonClick);
+					// 수정 버튼 클릭 이벤트
+					$('.updateButton').click(updateButtonClick);
+				}, error: function(e) {
+					console.log('목록 가져오기 실패');
+				}
+				
+			});
+				
+		}
+		
+		// 댓글 저장
+		function inputButtonClick() {
+			let name = $('#name').val();
+			let comment = $('#comment').val();
+			
+			if(name == '' || comment == '') {
+				alert('이름과 내용을 입력하세요.');
+				return;
+			}
+			
+			$.ajax({
+				url: 'write',
+				type: 'post',
+				data: {name: name, comment: comment},
+				success: function() {
+					console.log("댓글 등록 성공");
+					$('#name').val('');
+					$('#comment').val('');
+					list();
+				}, error: function(e) {
+					console.log("댓글 등록 실패");
+				}
+			});
+			
+		}
+		
+		// 댓글 삭제
+		function deleteButtonClick() {
+			if(!confirm("정말삭제하실거에요???")) {
+				return;
+			}
+			let commentNum = $(this).data('num');
+			
+			$.ajax({
+				url: 'deleteComment',
+				type: 'post',
+				data: {num: commentNum},
+				success: function() {
+					alert('삭제 성공');
+					list();
+				}, error: function(e) {
+					alert("댓글 삭제 실패");
+				}
+			});
+		}
+		
+		// 댓글 수정
+		function updateButtonClick() {
+			// 클릭한 버튼이 속한 행(tr) 찾기
+			let tr = $(this).closest('tr');
+			// 같은 행의 class명이 commentTd인 td의 텍스트
+			let commentText = tr.find('.commentTd').text();
+			// 같은 행의 class명이 numTd인 td의 텍스트
+			let numText = tr.find('.numTd').text();
+			
+			// 텍스트를 입력 대화상자에 보여주고 수정하도록
+			let newCommentText = prompt("수정할 내용을 입력해주세요", commentText);
+			//console.log(updateStr);
+			
+			if (newCommentText == '' || newCommentText == null) {
+				return;
+			}
+			
+			$.ajax({
+				url: 'updateComment',
+				type: 'post',
+				data: {num: numText, comment: newCommentText},
+				success: function() {
+					//alert('댓글 수정 성공');
+					list();
+				}, error: function(e) {
+					console.log("댓글 수정 실패");
+				}
+			});
+		}
+		
+		
+		
+	</script>
+</head>
+<body>
+	<h1>[ 댓글 달기 ]</h1>
+	
+	<div>
+		<input type="text" id="name" placeholder="작성자명을 입력하세요">
+		<input type="text" id="comment" placeholder="댓글 내용을 입력하세요">
+		<button id="inputButton">저장</button>
+	</div>
+	<br>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>작성자</th>
+				<th class="w300">내용</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="commentTbody">
+			<!-- 댓글 내용 출력 영역 -->
+			<tr>
+				
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

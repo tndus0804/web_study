@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>ID 중복체크</title>
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<script>
+		let isIdOk = false;
+		let isNameOk = false;
+		$(document).ready(function() {
+			$('#memberid').on('input', function() {
+				console.log("입력중");
+				let id = $(this).val();
+				if(id.length == 0) {
+					$('#idCheck').html('');
+					$('#joinBtn').attr('disabled', true);
+					return;
+				}
+				
+				if (id.length < 3 || id.length > 10) {
+					$('#idCheck').css("color","red").html("3~10자로 입력하세요");
+					$('#joinBtn').attr('disabled', true);
+					//isIdOk = false;
+					//checkJoin();
+					return;
+				}
+				
+				
+				let idCheck = $('#idCheck');
+				
+				$.ajax({
+					url: "idDuplicate",
+					type: "post",
+					data: {id: id},
+					dataType: "json",
+					success: function(result) {
+						// console.log('성공');
+						if(result) {
+							idCheck.css("color","red");
+							idCheck.html('이미 사용중인 아이디입니다.');
+							$('#joinBtn').attr('disabled', true);
+							isIdOk = false;
+						} else {
+							idCheck.css("color","green").html('사용가능한 아이디입니다.');
+							isIdOk = true;
+							$('#joinBtn').attr('disabled', false);
+						}
+						
+					}, error: function(e) {
+						console.log(JSON.stringify(e));
+					}, complete: function() {
+						//checkJoin();
+					}
+				})
+			});
+			
+			$('#name').on('input', function() {
+				let name = $('#name').val();
+				if(name.length > 0) {
+					isNameOk = true;
+				} else {
+					isNameOk = false;
+				}
+				checkJoin();
+			});
+			
+		});
+		function checkJoin() {
+			if (isIdOk && isNameOk) {
+				$('#joinBtn').attr('disabled', false);
+			} else {
+				$('#joinBtn').attr('disabled', true);
+			}
+		}
+		
+		function join() {
+			console.log("dd");
+			let id = $('#memberid');
+			let name = $('#name');
+			$.ajax({
+				url: "join",
+				type: "post",
+				data: { id: id.val(), name: name.val() },
+				success: function(msg) {
+					alert(msg);
+					id.val('');
+					name.val('');
+				}, error: function(e) {
+					alert("실패");
+				}
+				
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1>[ ID 중복체크 ]</h1>
+	<form action="#" method="post">
+		<table>
+			<tr>
+				<td>ID</td>
+				<td><input type="text" id="memberid" name="id"></td>
+				<td id="idCheck"></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="name" name="name"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="button" onclick="join()" value="가입" id="joinBtn" disabled="disabled"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
