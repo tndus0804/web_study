@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>로그인</title>
+	<!-- jQuery 파일 불러오기 -->
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<script>
+		$(document).ready(function() {
+			let msg = '';
+			/*
+			if ('[[${error}]]') {
+				// msg += '[[${error}]]'
+			}
+			*/
+			if ('[[${exception}]]') {
+				msg += '[[${exception}]]'
+			}
+			if (msg != '') {
+				alert(msg);
+			}
+			$("#loginForm").submit(validation);
+		});
+		function validation() {
+			let id = $("#id").val();
+			let pw = $("#password").val();
+			
+			if (id == "") {
+				alert("ID를 입력해주세요");
+				return false;
+			}
+			
+			if (pw == "") {
+				alert("비밀번호를 입력해주세요");
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1>[ 로그인 ]</h1>
+	<form th:action="@{/member/login}" method="post" id="loginForm">
+		<table>
+			<tr>
+				<th>ID</th>
+				<td><input type="text" id="id" name="memberId"></td>
+			<tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" id="password" name="memberPw"></td>
+			<tr>
+			<tr>
+				<th></th>
+				<td><input type="submit" value="login"></td>
+			<tr>
+		
+		</table>
+	</form>
+	
+</body>
+</html>

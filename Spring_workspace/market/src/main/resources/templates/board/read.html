@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>게시판</title>
+	<style>
+		
+	</style>
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border-top: solid 1px black;
+			border-bottom: solid 1px black;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			getboardInfo();
+			getReplylist();
+
+		});
+		function getboardInfo() {
+			$.ajax({
+				url: "/market/board/getBoard",
+				data: {boardNum: '[[${boardNum}]]'},
+				type: "get",
+				dataType: "json",
+				success: function(ob) {
+					$("#boardNum").text(ob.boardNum);
+					$("#memberId").text(ob.memberId);
+					$("#category").text(ob.category);
+					$("#title").text(ob.title);
+					$("#contents").text(ob.contents);
+					$("#price").text(ob.price);
+					$("#soldout").text(ob.soldout ? "판매중" : "판매완료");
+					if (ob.buyer != null) {
+						$("#buyer").text(ob.buyer.memberId);
+						$("#buyButtonTr").css("display", "none");
+					}
+					console.log(ob.buyer)
+					
+				}, error: function(e) {
+					console.log("불러오기 실패")
+				}
+			});
+		}
+		
+		function getReplylist() {
+			$.ajax({
+				url: '/market/board/getCommentList',
+				type: 'get',
+				dataType: "json",
+				data: {boardNum : '[[${boardNum}]]'},
+				success: function(list) {
+					console.log(list);
+					$('#commentTbody').empty();
+					
+					$(list).each(function(i, ob) {
+						let html = `
+							<tr>
+								<td class="numTd">${ob.num}</td>
+								<td>${ob.name}</td>
+								<td class="commentTd">${ob.comment}</td>
+								<td>
+									<button class="deleteButton" data-num="${ob.num}">삭제</button>
+								</td>
+							</tr>
+							
+						`;
+						$('#commentTbody').append(html);
+					});
+					
+					// 삭제 버튼 클릭 이벤트
+					$('.deleteButton').click(deleteComment);
+				}, error: function(e) {
+					console.log('목록 가져오기 실패');
+				}
+				
+			});
+		}
+		
+		function deleteComment() {
+			
+		}
+		
+		function clickBuy() {
+			$.ajax({
+				url: "buyItem",
+				type: "get",
+				data: { boardNum: '[[${boardNum}]]'  },
+				dataType: "text",
+				success: function(msg) {
+					alert(msg);
+					getboardInfo();
+					
+				}, error: function(e) {
+					console.log("불러오기 실패")
+				}
+				
+			})
+		}
+	</script>
+</head>
+<body>
+	<h1>[ 판매상품 상세보기 ]</h1>
+	
+	<table>
+		<tr>
+			<th>번호</th>
+			<td id="boardNum"></td>
+		</tr>
+		<tr>
+			<th>판매자</th>
+			<td id="memberId"></td>
+		</tr>
+		<tr>
+			<th>카테고리</th>
+			<td id="category"></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td id="title"></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td id="contents"></td>
+		</tr>
+		<tr>
+			<th>판매가격</th>
+			<td id="price"></td>
+		</tr>
+		<tr>
+			<th>상태</th>
+			<td id="soldout"></td>
+		</tr>
+		<tr>
+			<th>구매자</th>
+			<td id="buyer"></td>
+		</tr>
+		<tr id="buyButtonTr">
+			<th></th>
+			<td ><button onClick="clickBuy()">구매하기</button></td>
+		</tr>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<td>리플입력</td>
+				<td colspan="3" id="replyComment"><input type="text"></td>
+				<td><input type="button" id="inputComment" value="저장"></td>
+			</tr>
+		</thead>
+		<tbody id="commentTbody">
+			<!-- 댓글 내용 출력 영역 -->
+		</tbody>
+	</table>
+		
+	
+
+</body>
+</html>
